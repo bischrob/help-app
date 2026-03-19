@@ -1,8 +1,8 @@
 # How-to: API
 
-This user guide documents the available endpoints for CatMapper's API. The api base URL is <https://catmapper.org/api>.
+This user guide documents the available endpoints for CatMapper's API. The api base URL is <https://api.catmapper.org>.
 
-Examples can be run within a browser or through various API clients by affixing the examples to the base URL (e.g., <https://catmapper.org/api/CMID?database=SocioMap&cmid=SM1>).
+Examples can be run within a browser or through various API clients by affixing the examples to the base URL (e.g., <https://api.catmapper.org/CMID?database=SocioMap&cmid=SM1>).
 
 Questions and feedback can be directed to [support\@catmapper.org](mailto:support@catmapper.org).
 
