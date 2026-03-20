@@ -6,6 +6,21 @@ Examples can be run within a browser or through various API clients by affixing 
 
 Questions and feedback can be directed to [support\@catmapper.org](mailto:support@catmapper.org).
 
+## API Key Access
+
+Write endpoints (for example upload/edit flows) require a CatMapper API key tied to a registered account.
+
+### How to get an API key
+
+1. Register for the relevant app at <https://www.catmapper.org/sociomap> or <https://www.catmapper.org/archamap> using the **Login** -> **Register** flow.
+2. Wait for account approval (registrations are reviewed).
+3. Request API-key access by emailing [support\@catmapper.org](mailto:support@catmapper.org) from your registered email and include your CatMapper username plus intended write use case.
+4. After your key is issued, store it as an environment variable (recommended):
+
+`CATMAPR_API_KEY=cmk_your_api_key`
+
+Do not commit API keys to source control or share keys in public notebooks/scripts.
+
 ## **API User Guide: Search Endpoint**
 
 ### **Endpoint Description**
