@@ -18,12 +18,15 @@ import {
 import ReactMarkdown from 'react-markdown';
 import { theme } from './theme';
 
+const BASE_PATH = (import.meta.env.BASE_URL || '/').replace(/\/+$/, '');
+const withBasePath = (path) => `${BASE_PATH}${path.startsWith('/') ? path : `/${path}`}`;
+
 const MarkdownViewer = () => {
   const { docId = 'index' } = useParams();
   const [content, setContent] = useState('Loading documentation...');
 
   useEffect(() => {
-    fetch(`/docs/${docId}.md`)
+    fetch(withBasePath(`/docs/${encodeURIComponent(docId)}.md`))
       .then(res => res.ok ? res.text() : '# 404\nDocument not found')
       .then(text => setContent(text))
       .catch(() => setContent('Error loading document.'));
@@ -49,7 +52,7 @@ function App() {
   };
 
   useEffect(() => {
-    fetch(`${process.env.PUBLIC_URL}/docs/sidebar.json`)
+    fetch(withBasePath('/docs/sidebar.json'))
       .then(res => {
         if (!res.ok) throw new Error("Sidebar config not found");
         return res.json();
@@ -83,7 +86,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <BrowserRouter basename={process.env.PUBLIC_URL}>
+      <BrowserRouter basename={BASE_PATH || undefined}>
         <Box sx={{ display: 'flex', minHeight: '100vh' }}>
 
           <AppBar

@@ -1,13 +1,18 @@
 import { render, screen, waitFor } from '@testing-library/react';
+import { afterEach, expect, test, vi } from 'vitest';
 import App from './App';
 
-jest.mock('react-markdown', () => ({
+vi.mock('react-markdown', () => ({
   __esModule: true,
   default: ({ children }) => <div>{children}</div>,
 }));
 
+afterEach(() => {
+  vi.restoreAllMocks();
+});
+
 test('renders help center header', async () => {
-  const fetchMock = jest.spyOn(global, 'fetch').mockImplementation((url) => {
+  vi.spyOn(global, 'fetch').mockImplementation((url) => {
     if (String(url).includes('sidebar.json')) {
       return Promise.resolve({
         ok: true,
@@ -27,6 +32,4 @@ test('renders help center header', async () => {
     const homeItems = await screen.findAllByText('Home');
     expect(homeItems.length).toBeGreaterThan(0);
   });
-
-  fetchMock.mockRestore();
 });
