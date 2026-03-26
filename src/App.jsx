@@ -107,6 +107,12 @@ const markdownContainerSx = {
   '& th, & td': {
     border: '1px solid rgba(0, 0, 0, 0.25)',
     padding: '0.45rem 0.6rem',
+    overflowWrap: 'normal',
+    wordBreak: 'normal',
+    verticalAlign: 'top',
+  },
+  '& th:first-of-type, & td:first-of-type': {
+    minWidth: '140px',
   },
   '& thead th': {
     backgroundColor: 'rgba(0, 0, 0, 0.05)',

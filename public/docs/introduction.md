@@ -113,8 +113,8 @@ category (e.g., geospatial location, population estimate, associated
 languages and religions, other categories it contains or is contained
 by). A **key** specifies how a specific dataset uniquely encodes a
 specific category. A simple key involves a single variable and value
-(e.g., V131 = 3). More complex keys can involve combinations of
-variables and values (e.g., V131 = 3 AND V024 = 1).
+(e.g., V131 == 3). More complex keys can involve combinations of
+variables and values (e.g., V131 == 3 && V024 == 1).
 
 Table 4 illustrates key metadata and contextual properties that USES ties can store.
 
@@ -123,7 +123,7 @@ Table 4 illustrates key metadata and contextual properties that USES ties can st
 | Property | Description |
 | --- | --- |
 | Name         | List of names the dataset uses for category                                                                                                                                                                                         |
-| Key          | Unique identifier dataset uses to encode a specific category. A simple key involves a single variable and value (e.g., V131 = 3). More complex keys can involve combinations of variables and values (e.g., V131 = 3 AND V024 = 1). |
+| Key          | Unique identifier dataset uses to encode a specific category. A simple key involves a single variable and value (e.g., V131 == 3). More complex keys can involve combinations of variables and values (e.g., V131 == 3 && V024 == 1). |
 | country      | CatMapper id for country or countries that the datasets claims are associated with the category                                                                                                                                     |
 | district     | CatMapper id for non-country regions that the datasets claims are associated with the category                                                                                                                                      |
 | geoCoords    | Latitude and longitude that the dataset claims are associated with the category                                                                                                                                                     |

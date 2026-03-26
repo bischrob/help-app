@@ -223,7 +223,7 @@ The merge-template workflow supports four practical table shapes:
 
 *Figure 6. Upload table structures used across merge-template creation and updates.*
 
-![Upload table structure figure for merge-template workflows](media/Merging/merge-template-upload-structures.png)
+![Upload table structure figure for merge-template workflows](media/Merging/merge-template-upload-structures.webp)
 
 1. Create `MERGING` / `STACK` nodes (if needed).
 2. Create merge ties between merge template, stack, and dataset.

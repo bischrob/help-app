@@ -1,16 +1,16 @@
 ## CatMapper
 
-*Figure 1. CatMapper main application logo.*
+<div style="text-align: center;">
+  <img src="media/catmapper_small.webp" alt="CatMapper logo" style="width: 286px; max-width: 100%; height: auto;" />
+</div>
 
-![CatMapper logo](media/catmapper_small.webp)
+<div style="text-align: center;">
+  <img src="media/sociomap_small.webp" alt="SocioMap logo" style="width: 286px; max-width: 100%; height: auto;" />
+</div>
 
-*Figure 2. SocioMap application logo.*
-
-![SocioMap logo](media/sociomap_small.webp)
-
-*Figure 3. ArchaMap application logo.*
-
-![ArchaMap logo](media/archamap_small.webp)
+<div style="text-align: center;">
+  <img src="media/archamap_small.webp" alt="ArchaMap logo" style="width: 286px; max-width: 100%; height: auto;" />
+</div>
 
 Thank you for using CatMapper. This guide will help you get started with the CatMapper application, although the user guide is still a work in progress. Please feel free to contact us at [support@catmapper.org](mailto:support@catmapper.org) for direct support.
 
