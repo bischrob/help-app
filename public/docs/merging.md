@@ -24,12 +24,12 @@ Even when there are direct matches between categories in different datasets, the
 
 CatMapper provides a number of tools to assist users in overcoming these challenges.  In this case, CatMapper already stores all the names and encodings of categories from Afrobarometer 9 and the Ethnographic Atlas.  It also stores how categories are related, such as the Yoruba ethnic category containing subgroups Oyo, Ife, Ekiti and Egba.  Using this information, CatMapper provides several functions to assist users in: (1) proposing the best way to assign categories across datasets, (2) storing thee final decisions to assign categories, and (3) sharing these decisions so users can inspect and re-use those decisions.
 
-**What if my dataset isn't already linked to CatMapper?** When a user has a new dataset whose categories haven't yet been translated and linked to CatMapper's categories, [[translating]] tools can assist in proposing and storing those new translations.
+**What if my dataset isn't already linked to CatMapper?** When a user has a new dataset whose categories haven't yet been translated and linked to CatMapper's categories, [Translating](/translating) tools can assist in proposing and storing those new translations.
 
 ## 2. Proposing Merges
 CatMapper provides several ways of proposing matches for categories from different datasets.  This includes: (1) identifying only exact matches where both datasets refer to the same category (e.g. Tiv in both Afrobarometer 9 and the Ethnographic Atlas), and (2) when exact matches don't exist, looking to closely related subgroups and supergroups for matches (e.g. matching Yoruba in Afrobarometer 9 to Oyo, Ife, Ekiti and Egba in the Ethnographic Atlas).  This section walks through the key steps for proposing both exact and extended merges.
 
-Before proposing a merge, you will need to find the CatMapper IDs for each of the datasets you would like to use.  Visit the "[[exploring]]" page for help on how to find the CatMapper IDs for specific datasets.  The IDs for Afrobarometer 9 and Ethnographic Atlas are SD467981 and SD14, respectively.
+Before proposing a merge, you will need to find the CatMapper IDs for each of the datasets you would like to use.  Visit the [Exploring](/exploring) page for help on how to find the CatMapper IDs for specific datasets.  The IDs for Afrobarometer 9 and Ethnographic Atlas are SD467981 and SD14, respectively.
 
 ![](media/Merging/ProposeMerge1.webp)
 
@@ -140,13 +140,13 @@ The result will look like this (table output abbreviated for space):
 
 1. **To use this feature, each dataset must already include:**
 
-> - A datasetID column identifying the dataset (you can obtain this from the [[exploring.md|explore]]) section of CatMapper by searching by *DATASET* and then copying the CMID that is listed for that dataset. The CMID for each category will be obtained automatically from the system.
+> - A datasetID column identifying the dataset (you can obtain this from the [Exploring](/exploring) section of CatMapper by searching by *DATASET* and then copying the CMID that is listed for that dataset). The CMID for each category will be obtained automatically from the system.
 
 > - Any original Key columns used in the translation process
 
 > The original key columns for the example datasets above are the GID and geonameid columns.
 
-> If your dataset has not yet been translated, please visit the [[translating.md|Translate tab]] before continuing.
+> If your dataset has not yet been translated, please visit the [Translating](/translating) page before continuing.
 
 2. **Uploading Datasets**
 
@@ -180,16 +180,51 @@ The result will look like this (table output abbreviated for space):
 
 > Merging does not currently support fuzzy or hierarchical matching--only exact CMID matches will be used.
 
-> Need help preparing your data for merging? Visit the [[translating]] section or contact support@catmapper.org.
+> Need help preparing your data for merging? Visit [Translating](/translating) or contact [support@catmapper.org](mailto:support@catmapper.org).
 
-## 4. Storing Merges Templates
+## 4. Storing Merge Templates
 
-> Under development. Please contact support\@catmapper.org for assistance.
+Merge templates are the structure CatMapper uses to store merge decisions so they can be reused and audited later.
 
-## 5. Sharing Merges Templates
+The merge-template graph is centered on:
 
-> Under development. Please contact support\@catmapper.org for assistance.
+- a `MERGING` node (the overall template),
+- one or more `STACK` nodes (groupings of datasets),
+- links to `DATASET` and `VARIABLE`,
+- and `EQUIVALENT` ties that capture category-level alignment decisions.
 
-## 6. Downloading Merging Templates
+![](media/Merging/merge-template-structure.png)
 
-> Under development. Please contact support\@catmapper.org for assistance.
+### Core structure
+
+![](media/Merging/merge-template-flow-smartart.svg)
+
+This gives two layers:
+
+1. dataset/category encoding via `USES`,
+2. merge-template alignment and variable mapping via `MERGING` and `EQUIVALENT`.
+
+### Upload table structures
+
+The merge-template workflow supports four practical table shapes:
+
+![](media/Merging/merge-template-upload-structures.png)
+
+1. Create `MERGING` / `STACK` nodes (if needed).
+2. Create merge ties between merge template, stack, and dataset.
+3. Create merge ties from stack/dataset to variable.
+4. Create equivalence ties between dataset-specific category uses.
+
+## 5. Recommended Workflow and Safety Rules
+
+To avoid key-format errors and rerun issues:
+
+1. Use `standard` upload mode for merge-template and edit workflows.
+2. Keys must be in `{property} == {variable}` format, for example `Name == Yoruba`.
+3. Validate required columns before upload:
+   - dataset ties: `mergingID`, `datasetID`
+   - variable ties: `mergingID`, `datasetID`, `variableID`, `varName`
+   - equivalence ties (long): `mergingID`, `categoryID`, `Key`, `datasetID`
+4. Prefer idempotent reruns with explicit update semantics (`merging_add` or `merging_replace`) instead of re-creating full templates blindly.
+
+If you need help preparing template CSVs for your project, contact [support@catmapper.org](mailto:support@catmapper.org).

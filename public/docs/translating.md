@@ -4,9 +4,9 @@ Under development. Please contact [support@catmapper.org](mailto:support@catmapp
 
 ## 1. Introduction
 
-CatMapper already stores and links categories (e.g. ethnicity, language, religion, districts) from over 2500 datasets, including demographic and health surveys, UNICEF multiple indicator cluster surveys, cultural datasets (e.g., the Ethnographic Atlas, Human Relations and Area Files, and the Global Jukebox).  When a user wants to identify how to merge data across these datasets by a specific category (e.g., ethnicity), [[merging.md|merging]] tools provide automated proposals for how categories already linked to CatMapper match across datasets.
+CatMapper already stores and links categories (e.g. ethnicity, language, religion, districts) from over 2500 datasets, including demographic and health surveys, UNICEF multiple indicator cluster surveys, cultural datasets (e.g., the Ethnographic Atlas, Human Relations and Area Files, and the Global Jukebox).  When a user wants to identify how to merge data across these datasets by a specific category (e.g., ethnicity), [Merging](/merging) tools provide automated proposals for how categories already linked to CatMapper match across datasets.
 
-However, when a dataset's categories haven't been linked to CatMapper, CatMapper provides tools: (1) to propose translations with existing CatMapper categories, (2) create new categories when necessary, and (3) to store how the new dataset's categories link to CatMapper categories.  In this section, we focus on the first set of tools for proposing translations.  For information on how registered users can upload and store those translations, please visit [[uploading.md|uploading]].
+However, when a dataset's categories haven't been linked to CatMapper, CatMapper provides tools: (1) to propose translations with existing CatMapper categories, (2) create new categories when necessary, and (3) to store how the new dataset's categories link to CatMapper categories.  In this section, we focus on the first set of tools for proposing translations.  For information on how registered users can upload and store those translations, please visit [Uploading](/uploading).
 
 ## 2. Proposing a translation
 
@@ -67,7 +67,7 @@ This spreadsheet of proposed matches includes important information to assist us
 
 9) **matching_Name**.  This provides the name for the category in CatMapper that provides the best match to the inputted Name.
 
-CatMapper proposes matches, but ideally, the user will quickly inspect all matches to ensure they make sense.  They should also give special attention to fuzzy matches, one-to-many, many-to-one, and no matches.  For one-to-many matches, the user must decide which of the many proposed matches (if any) are most appropriate.  This usually relies on investigating additional contextual information, such as language, geospatial location, and relationships with other categories, to determine the best match (using external information and the [[exploring.md|exploring]] functions). When there is no match, the user may find additional contextual information that helps them find a match in CatMapper using the [[exploring.md|exploring]] functions.  When a user cannot find a matching CatMapper category either automatically or manually, then they may choose to upload a new category with [[uploading.md|uploading]] functions.
+CatMapper proposes matches, but ideally, the user will quickly inspect all matches to ensure they make sense.  They should also give special attention to fuzzy matches, one-to-many, many-to-one, and no matches.  For one-to-many matches, the user must decide which of the many proposed matches (if any) are most appropriate.  This usually relies on investigating additional contextual information, such as language, geospatial location, and relationships with other categories, to determine the best match (using external information and the [Exploring](/exploring) functions). When there is no match, the user may find additional contextual information that helps them find a match in CatMapper using the [Exploring](/exploring) functions.  When a user cannot find a matching CatMapper category either automatically or manually, then they may choose to upload a new category with [Uploading](/uploading) functions.
 
 ## 5. Limiting by country, context, and dataset
 
@@ -81,7 +81,7 @@ Names are a useful way to find matching categories, but they often return too ma
 
 	1. If you chooses to limit by dataset, the user also has the option of returning the Keys used by that dataset for that specific category.
 
-One can use the CatMapper's [[exploring.md|exploring]] functions to find the CatMapper ID for the country, context, or dataset one would like to use to limit the search.  
+One can use the CatMapper's [Exploring](/exploring) functions to find the CatMapper ID for the country, context, or dataset one would like to use to limit the search.  
 
 ## 6. Finding country CMIDs for limiting searches
 

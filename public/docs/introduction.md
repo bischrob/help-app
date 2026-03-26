@@ -11,7 +11,7 @@ assisting users in several key activities.
 
 ## What does CatMapper do?
 
-**[Objectives]{.underline}.** CatMapper assists users in:
+<u><strong>CatMapper assists users in:</strong></u>
 
 1.  **Exploring** where data is available for complex, evolving
     categories commonly used in the social sciences (e.g., ethnic,
@@ -28,7 +28,7 @@ assisting users in several key activities.
 4.  **Documenting** and **Sharing** their translations and merges so
     that other users can check and re-use their work.
 
-**[Apps.]{.underline}** CatMapper currently includes two apps aimed at
+<u><strong>Apps.</strong></u> CatMapper currently includes two apps aimed at
 organizing two kinds of categories. SocioMap organizes sociopolitical
 categories, such as ethnicities, religions, languages, and
 administrative districts. ArchaMap organizes categories of material

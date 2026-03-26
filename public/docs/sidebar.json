@@ -1,11 +1,12 @@
 {
     "docs": [
+        {"title": "CatMapper Home", "href": "https://catmapper.org"},
         {"title": "Home", "id": "index"},
         {"title": "Introduction", "id": "introduction"},
-        {"title": "Merging", "id": "merging"},
         {"title": "Exploring", "id": "exploring"},
         {"title": "Translating", "id": "translating"},
         {"title": "Uploading", "id": "uploading"},
+        {"title": "Merging", "id": "merging"},
         {"title": "API", "id": "API"}
     ]
 }
