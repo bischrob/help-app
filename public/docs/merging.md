@@ -31,7 +31,9 @@ CatMapper provides several ways of proposing matches for categories from differe
 
 Before proposing a merge, you will need to find the CatMapper IDs for each of the datasets you would like to use.  Visit the [Exploring](/exploring) page for help on how to find the CatMapper IDs for specific datasets.  The IDs for Afrobarometer 9 and Ethnographic Atlas are SD467981 and SD14, respectively.
 
-![](media/Merging/ProposeMerge1.webp)
+*Figure 1. Propose Merge interface with dataset validation and merge options.*
+
+![Merge tab with Propose Merge selected and dataset inputs](media/Merging/ProposeMerge1.webp)
 
 1. Navigate to the Merge tab (shown above) and choose Propose Merge on the right.  
 2. In the "Select Datasets for Merging", type the CatMapper IDs for the relevant datasets (separated by commas).  
@@ -79,10 +81,14 @@ For an **extended merge proposal**, the spreadsheet includes the following colum
 
 The merge proposal spreadsheet provides suggestions for how categories can be matched across datasets. In most cases, exact matches do not require any further deliberation.  However, for extended matches a user must often make decisions about which matches they will ultimately use for a given analysis.  For example, when using the extended merge for Afrobarometer 9 and Ethnographic Atlas, it finds an exact match between Kgatla in both datasets.  However, it also finds a match between Kgatla in the Ethnographic atlas and several other related categories in Afrobarometer 9 (See figure below).  These include subgroups of Kgatla (Moseia, and Lekholokoe), a parent category of Kgatla (Tswana) and a child of that parent category (Thlaro).  In this case, a user who cares about only using the most closely matched categories may limit the matches to just Kgatla from Ethnographic Atlas to Kgatla and its child categories (Moseia and Lekholokoe) in AFrobarometer 9.  By contrast, a user who wants to bring in more data from a larger number of categories, may match Kgatla in Ethnographic Atlas to Kgatla, Moseia, Lekholokoe, Tswana and Tlharo in Afrobaromter 9.  In short, there are a number of considerations, including precision of matching and quantity of available data that may guide how users make decisions about matches based on those proposed in the merge proposal spreadsheet.
 
-![](media/Merging/ProposeMerge2.webp)
+*Figure 2. Merge proposal output showing exact and extended candidate matches.*
+
+![Merge proposal sheet excerpt illustrating exact and extended match options](media/Merging/ProposeMerge2.webp)
 Once a user has made their decisions about how to merge data by categories across datasets, the spreadsheet provides the necessary information to build a merge between datasets. Specifically, it includes the keys that each datasets uses to refer to corresponding categories.  For example, for Tiv, the spreadsheet shows that observations in Afrobarometer 9 where the variable Q84A has value 629 would count as Tiv.   Meanwhile, in the Ethnographic Atlas any rows where the variable society_id has a value Ah3 would count as Tiv.  Using the spreadsheet, a user can automatically generate code that assigns a new linking variable to both the Ethnographic Atlas and Afrobarometer 9 for joining data across the two datasets by these categories.  The figure below illustrates the additional link variable that would be added to permit joining the two datasets.  A future tutorial will illustrate different approaches, using either native excel functions or r code, to build the code necessary to derive link variables in all relevant datasets to permit merging datasets.
 
-![](media/Merging/ProposeMerge3.webp)
+*Figure 3. Example of derived link-variable columns used for downstream joining.*
+
+![Example of derived link variable columns used to join datasets](media/Merging/ProposeMerge3.webp)
 
 
 ## 3. Joining Datasets
@@ -97,7 +103,8 @@ First, we will demonstrate an example of how to use the Join Datasets tool, and 
 
 For example, you may have two datasets: GADM ([download example 1](data/example-data1.xlsx)) and Geonames ([download example 2](data/example-data2.xlsx)). They both contain information about administrative districts. Just as an example, let's say you have a variable in GADM that measures the percentage of a population that speaks a certain language (pseudoVar1), and in Geonames, you have a variable that measures the population density of those districts (pseudoVar2). You want to merge these datasets to analyze the relationship between language prevalence and population density.
 
-#### Dataset 1: GADM
+*Table 1. Example source table for Dataset 1 (GADM) with `GID` key values and `pseudoVar1`.*
+
 | datasetID | Name                          | GID        | pseudoVar1 |
 |-----------|-------------------------------|------------|------------|
 | SD1       | Saint Catherine               | JAM.8_1    | 0.87       |
@@ -108,7 +115,8 @@ For example, you may have two datasets: GADM ([download example 1](data/example-
 | SD1       | Mtskheta-Mtianeti            | GEO.7_1    | 1.01       |
 | SD1       | West Coast                    | NZL.19_1   | 1.15       |
 
-#### Dataset 2: Geonames
+*Table 2. Example source table for Dataset 2 (Geonames) with `geonameid` key values and `pseudoVar2`.*
+
 | datasetID | Name                          | geonameid | pseudoVar2 |
 |-----------|-------------------------------|-----------|------------|
 | SD2       | Portland                      | 3488997   | 1.8        |
@@ -124,7 +132,8 @@ In this case, you would upload both datasets to the Join Datasets tool. The syst
 
 The result will look like this (table output abbreviated for space):
 
-#### Merged Dataset:
+*Table 3. Example merged output joined by shared CatMapper IDs (`CMID`).*
+
 | CMID     | datasetID_left | datasetID_right | pseudoVar1 | pseudoVar2 |
 |----------|----------------|-----------------|------------|------------|
 | SM474    | SD1            | SD2             | 0.28       | 1.46       |
@@ -193,11 +202,15 @@ The merge-template graph is centered on:
 - links to `DATASET` and `VARIABLE`,
 - and `EQUIVALENT` ties that capture category-level alignment decisions.
 
-![](media/Merging/merge-template-structure.png)
+*Figure 4. Merge-template graph structure linking `MERGING`, `STACK`, `DATASET`, `VARIABLE`, and `EQUIVALENT`.*
+
+![Merge-template graph structure showing MERGING, STACK, DATASET, VARIABLE, and EQUIVALENT](media/Merging/merge-template-structure.png)
 
 ### Core structure
 
-![](media/Merging/merge-template-flow-smartart.svg)
+*Figure 5. Merge-template flow from `MERGING` through `STACK` and dataset/category linkages.*
+
+![Merge-template flow diagram from MERGING to STACK, DATASET, USES, CATEGORY, and VARIABLE](media/Merging/merge-template-flow-smartart.svg)
 
 This gives two layers:
 
@@ -208,7 +221,9 @@ This gives two layers:
 
 The merge-template workflow supports four practical table shapes:
 
-![](media/Merging/merge-template-upload-structures.png)
+*Figure 6. Upload table structures used across merge-template creation and updates.*
+
+![Upload table structure figure for merge-template workflows](media/Merging/merge-template-upload-structures.png)
 
 1. Create `MERGING` / `STACK` nodes (if needed).
 2. Create merge ties between merge template, stack, and dataset.
@@ -225,6 +240,5 @@ To avoid key-format errors and rerun issues:
    - dataset ties: `mergingID`, `datasetID`
    - variable ties: `mergingID`, `datasetID`, `variableID`, `varName`
    - equivalence ties (long): `mergingID`, `categoryID`, `Key`, `datasetID`
-4. Prefer idempotent reruns with explicit update semantics (`merging_add` or `merging_replace`) instead of re-creating full templates blindly.
 
-If you need help preparing template CSVs for your project, contact [support@catmapper.org](mailto:support@catmapper.org).
+If you need help preparing template spreadsheets for your project, contact [support@catmapper.org](mailto:support@catmapper.org).

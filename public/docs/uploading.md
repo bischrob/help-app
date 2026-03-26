@@ -7,7 +7,7 @@ CatMapper is designed to be an ever-growing corpus of categories and their trans
 ## 2. Registering
 It’s not necessary to register to explore the database.  However, it is necessary to register to add categories or connections.  To register for SocioMap or ArchaMap:
 
-1. Go to [https://www.catmapper.org/sociomap](https://www.catmapper.org/sociomap) or [https://www.catmapper.org/archamap](https://www.catmapper.org/archamap)
+1. Go to [catmapper.org/sociomap](https://catmapper.org/sociomap) or [catmapper.org/archamap](https://catmapper.org/archamap)
 2. Click the “login” button in the top right corner
 3. Choose “register” and follow the prompts.  Please provide several sentences about your goals to assist us in approving registration requests.
 ## 3. Uploading a translation
@@ -15,9 +15,11 @@ Adding categories and translations for a new dataset requires a few steps.  Firs
 
 **Logging in.** Before a user can add categories or connections, they must login with their user id and password in the upper righthand corner of the screen.
 
-**Navigating to Upload Translate page.** The upload Translation page provides the tools a user needs to add a dataset node, add new categories, and add new USES ties from a dataset nodes to categories it uses. To navigate to it, select the Translate tab, and choose "Upload Translation"
+**Navigating to the Edit upload page.** The Edit page provides the tools needed to add dataset nodes, add new category nodes, and create or update USES ties from datasets to categories. To navigate to it, open the **Edit** menu in the top navigation bar and select **Edit**.
 
-![](media/Uploading/Uploading1.webp)
+*Figure 1. Edit upload landing page with template links and file import controls.*
+
+![Edit upload page reached from the Edit menu](media/current/edit-upload-page.webp)
 ### Adding a dataset node
 If a user wants to add categories from a new dataset, they first need to add a node for that dataset.  
 
@@ -45,8 +47,13 @@ If a user wants to add categories from a new dataset, they first need to add a n
 8. Press "Upload"
 9. After the message indicating the upload is complete, press the "Download" button to download a spreadsheet with details of the upload.  This also includes the new unique CatMapper CMID assigned to that dataset.
 
-![](media/Uploading/Uploading2.webp)
-![](media/Uploading/Uploading3.webp)
+*Figure 2. Edit upload options panel with operation family and mode selection.*
+
+![Edit upload options panel with operation and mode selections](media/current/edit-upload-options-panel.webp)
+
+*Figure 3. Edit upload options panel showing required columns and optional property selection.*
+
+![Edit upload options panel showing required columns and property selection](media/current/edit-upload-options-panel.webp)
 
 ### Adding new category nodes
 When the new dataset has categories with no matches to existing CatMapper categories, it is necessary to create new category nodes.
@@ -56,7 +63,7 @@ When the new dataset has categories with no matches to existing CatMapper catego
 	- **datasetID**. this is the unique CatMapper ID that was created in the previous section on adding new dataset nodes. If you didn't keep it from the earlier step, you can find it using the [Exploring](/exploring) functions.
 	- **CMName**.  A name for the category
 	- **Name.**  The name for the category used by the dataset.  This may be the same as CMName, but it may also be different.  If the dataset assigns multiple names to the category, they should be included with semil-colons between them (Dan; Gio)
-	- **Key**.  The key indicating how the dataset encodes this category.  Most keys are of the form "Variable: Value".  For example in Afrobarometer 9, the variable Q84A stores information on ethicity, and  a value of 622 in that variable indicates the "Yoruba" ethnicity.  Thus the key for Yoruba in the Afrobarometer 9 dataset would be Q84: 622.
+	- **Key**.  The key indicating how the dataset encodes this category.  Most keys are of the form "Variable: Value".  For example in Afrobarometer 9, the variable Q84A stores information on ethicity, and  a value of 622 in that variable indicates the "Yoruba" ethnicity.  Thus the key for Yoruba in the Afrobarometer 9 dataset would be Q84 == 622.
 	- **label**.  This is the domain that will be assigned to the row.  For example, if the category is an ethnicity, the label is ETHNICITY.  If it is a district, it would be AREA.
 
 3. The user can also input values for the following properties if the dataset they are imputting makes claims about these properties.  
@@ -86,7 +93,7 @@ For categories in the new dataset that do have matches to existing CatMapper cat
 	- **datasetID**. this is the unique CatMapper ID that was created in the previous section on adding new dataset nodes. If you didn't keep it from the earlier step, you can find it using the [Exploring](/exploring) functions.
 	- **CMID**. the unique CatMapper ID for the category
 	- **Name.**  The name for the category used by the dataset.  This may be the same as CMName, but it may also be different.  If the dataset assigns multiple names to the category, they should be included with semil-colons between them (Dan; Gio)
-	- **Key**.  The key indicating how the dataset encodes this category.  Most keys are of the form "Variable: Value".  For example in Afrobarometer 9, the variable Q84A stores information on ethicity, and  a value of 622 in that variable indicates the "Yoruba" ethnicity.  Thus the key for Yoruba in the Afrobarometer 9 dataset would be Q84: 622.
+	- **Key**.  The key indicating how the dataset encodes this category.  Most keys are of the form "Variable: Value".  For example in Afrobarometer 9, the variable Q84A stores information on ethicity, and  a value of 622 in that variable indicates the "Yoruba" ethnicity.  Thus the key for Yoruba in the Afrobarometer 9 dataset would be Q84 == 622.
 	- **label**.  This is the domain that will be assigned to the row.  For example, if the category is an ethnicity, the label is ETHNICITY.  If it is a district, it would be AREA.
 
 3. The user can also input values for the additional properties outlined in the "Adding category nodes" section above.

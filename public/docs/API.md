@@ -1,272 +1,95 @@
 # How-to: API
 
-This user guide documents the available endpoints for CatMapper's API. The api base URL is <https://api.catmapper.org>.
+The primary CatMapper API documentation is the Swagger site at [api.catmapper.org/docs](https://api.catmapper.org/docs). Use that page as the authoritative reference for endpoint details, parameter schemas, and response models.
 
-Examples can be run within a browser or through various API clients by affixing the examples to the base URL (e.g., <https://api.catmapper.org/CMID?database=SocioMap&cmid=SM1>).
+This Help Center page is a vignette-style walkthrough of common API patterns so you can get started quickly.
 
-Questions and feedback can be directed to [support\@catmapper.org](mailto:support@catmapper.org).
+- API base URL: [api.catmapper.org](https://api.catmapper.org)
+- Example full request: [api.catmapper.org/CMID?database=SocioMap&cmid=SM1](https://api.catmapper.org/CMID?database=SocioMap&cmid=SM1)
+- Questions: [support@catmapper.org](mailto:support@catmapper.org)
 
 ## API Key Access
 
-Write endpoints (for example upload/edit flows) require a CatMapper API key tied to a registered account.
+Write endpoints (for example upload/edit workflows) require a CatMapper API key tied to a registered account.
 
 ### How to get an API key
 
-1. Register for the relevant app at <https://www.catmapper.org/sociomap> or <https://www.catmapper.org/archamap> using the **Login** -> **Register** flow.
-2. Wait for account approval (registrations are reviewed).
-3. Request API-key access by emailing [support\@catmapper.org](mailto:support@catmapper.org) from your registered email and include your CatMapper username plus intended write use case.
-4. After your key is issued, store it as an environment variable (recommended):
+1. Register for the relevant app at [catmapper.org/sociomap](https://catmapper.org/sociomap) or [catmapper.org/archamap](https://catmapper.org/archamap) using **Login** -> **Register**.
+2. Wait for account approval.
+3. Email [support@catmapper.org](mailto:support@catmapper.org) from your registered address with your CatMapper username and intended write use case.
+4. Store the key as an environment variable (recommended):
 
 `CATMAPR_API_KEY=cmk_your_api_key`
 
-Do not commit API keys to source control or share keys in public notebooks/scripts.
+Do not commit API keys to source control or share keys in public scripts/notebooks.
 
-## **API User Guide: Search Endpoint**
+## API Vignette: Search Endpoint
 
-### **Endpoint Description**
+Use `GET /search` to find categories or datasets in SocioMap/ArchaMap, including filtered searches by property, domain, time range, country, and context.
 
-The **`/search`** endpoint is tailored for conducting database searches on a single or empty search term on the explore page. This endpoint accommodates searches in specific databases and can filter results based on various parameters such as domain, year range, country, and context.
-
-### **HTTP Request Method**
-
--   **GET**
-
-### **Resource URL**
-
-`/search`
-
-### **Query Parameters**
-
--   **database**: The name of the CatMapper database where the search will be conducted. Only 'SocioMap' and 'ArchaMap' are valid values.
-
--   **term** (optional): The search term. If not provided, the search will return all results.
-
--   **property** (optional): Specifies the property to search by, with options including 'Name', 'CMID', or 'Key'.
-
--   **domain** (optional): Specifies the domain category within which the search is conducted. Default is 'CATEGORY'.
-
--   **yearStart** (optional): The earliest year of data collection or existence of the category. Results will return if category year range intersects with this range.
-
--   **yearEnd** (optional): The latest year of data collection or existence of the category.
-
--   **country** (optional): CMID of the ADM0 node with a 'DISTRICT_OF' tie.
-
--   **context** (optional): CMID of the parent node in the network.
-
--   **limit** (optional): Limits the number of results returned; defaults to 10000 if not specified.
-
--   **query** (optional): If set to 'true', returns the cypher query instead of executing it.
-
-### **Request Examples**
+- Endpoint: `GET /search`
+- Good first use case: find Yoruba in ETHNICITY or return all rows for a domain when `term` is empty.
+- Example requests:
 
 `GET /search?database=SocioMap&term=Yoruba&domain=ETHNICITY&property=Name`
 
 `GET /search?database=ArchaMap&term=Grasshopper&domain=SITE&property=Name`
 
-### **Responses**
+Typical result:
+- If `query=false` (default), returns matching rows (for example `CMID`, `CMName`, `country`, `domain`, `matching`, `matchingDistance`).
+- If `query=true`, returns the generated Cypher and parameters.
 
-#### Successful Response
+For complete parameter/response schema, use [api.catmapper.org/docs](https://api.catmapper.org/docs).
 
--   **Status Code**: 200 OK
+## API Vignette: Retrieve CMID Details
 
--   **Content**:
+Use `GET /CMID` when you already know a CatMapper ID and want its node properties plus relationship properties.
 
-    -   If **`query`** is set to **`false`**, returns a JSON array of search results with fields such as **`CMID`**, **`CMName`**, **`country`**, **`domain`**, **`matching`**, and **`matchingDistance`**.
-
-    -   If **`query`** is set to **`true`**, returns a JSON object containing the cypher query and relevant parameters.
-
-#### Error Response
-
--   **Status Code**: 500 Internal Server Error
-
--   **Content**: A JSON object detailing the error encountered during the search operation.
-
-## **API User Guide: Retrieve CMID Details**
-
-### **Endpoint Description**
-
-This API endpoint (**`/CMID`**) is designed to retrieve comprehensive details about a specific CatMapperID (CMID) from different databases. It fetches both node properties and their relationships associated with the specified CMID. The endpoint supports the GET method and requires the specification of both the database and the CMID.
-
-### **HTTP Request Method**
-
--   **GET**
-
-### **Resource URL**
-
-`/CMID`
-
-### **Query Parameters**
-
--   **database**: A string specifying which database to search in. Valid options are:
-
-    -   **SocioMap**: Targets the SocioMap database.
-
-    -   **ArchaMap**: Targets the ArchaMap database.
-
--   **cmid**: The CatMapperID for which details are to be retrieved. This should be a valid identifier that exists within the specified database.
-
-### **Request Examples**
+- Endpoint: `GET /CMID`
+- Required params: `database` (`SocioMap` or `ArchaMap`), `cmid`
+- Example requests:
 
 `GET /CMID?database=SocioMap&cmid=SM1`
 
 `GET /CMID?database=ArchaMap&cmid=AM1`
 
-### **Responses**
+Typical result:
+- `node`: node-level properties
+- `relations`: relationship IDs and their properties
 
-#### Successful Response
+For full schema details and edge cases, use [api.catmapper.org/docs](https://api.catmapper.org/docs).
 
--   **Status Code**: 200 OK
+## API Vignette: Retrieve Dataset Details
 
--   **Content**: A JSON object containing detailed information about the node and its relationships. The response structure is as follows:
+Use `GET /dataset` to inspect how a specific dataset node links to categories (including relationship properties like `Key`).
 
-    -   **node**: An array of objects, each representing a node property:
-
-        -   **nodeID**: The identifier of the node.
-
-        -   **nodeProperties**: The property name of the node.
-
-        -   **nodeValues**: The value associated with the node property.
-
-    -   **relations**: An object mapping relationship IDs to their properties:
-
-        -   Each relationship ID will have associated properties and values.
-
-#### Error Response
-
--   **Status Code**: 500 Internal Server Error
-
--   **Content**: A string message detailing the nature of the error, usually related to incorrect or missing parameters.
-
-## **API User Guide: Retrieve Dataset Details**
-
-### **Endpoint Description**
-
-This API endpoint (**`/dataset`**) is designed to retrieve detailed information about a dataset based on a given CMID (CatMapperID) from the specified database, filtering additionally by domain categories. This endpoint allows for querying dataset relations and properties within specified domains. It uses a GET method and requires specifying the database, CMID, and optionally the domain.
-
-### **HTTP Request Method**
-
--   **GET**
-
-### **Resource URL**
-
-`/dataset`
-
-### **Query Parameters**
-
--   **database**: A string identifier specifying the database from which to fetch the dataset. Accepted values are:
-
-    -   **SocioMap**: Targets the SocioMap database.
-
-    -   **ArchaMap**: Targets the ArchaMap database.
-
--   **cmid**: The CatMapperID of the dataset for which information is to be retrieved.
-
--   **domain** (optional): A category to filter dataset relationships. Defaults to "CATEGORY" if not specified.
-
-### **Request Examples**
+- Endpoint: `GET /dataset`
+- Required params: `database`, `cmid`
+- Optional param: `domain` (defaults to `CATEGORY`)
+- Example requests:
 
 `GET /dataset?database=SocioMap&cmid=SD1&domain=CATEGORY`
 
 `GET /dataset?database=ArchaMap&cmid=AD1`
 
-### **Responses**
+Typical result:
+- Relationship-oriented rows with fields such as `datasetName`, `datasetID`, `CMID`, `CMName`, `type`, `Key`, and related dynamic properties.
 
-#### Successful Response
+For full request/response contract, use [api.catmapper.org/docs](https://api.catmapper.org/docs).
 
--   **Status Code**: 200 OK
+## API Vignette: Retrieve All Datasets
 
--   **Content**: A JSON array of objects, each representing details of relationships and properties of datasets related to the specified CMID. Typical properties included are:
+Use `GET /allDatasets` to get the current dataset catalog for one CatMapper database.
 
-    -   **datasetName**: The name of the dataset.
-
-    -   **datasetID**: The CMID of the dataset.
-
-    -   **CMID**: The CatMapperID of related entities.
-
-    -   **CMName**: The name of related entities.
-
-    -   **type**: The type of relationship.
-
-    -   **Key**: Key information of the relationship.
-
-    -   Other dynamic properties based on the dataset's schema and the specified domain.
-
-#### Error Response
-
--   **Status Code**: 500 Internal Server Error
-
--   **Content**: A string message indicating the nature of the error, typically related to incorrect database or CMID parameters or issues with database connections.
-
-## **API User Guide: Retrieve All Datasets**
-
-### **Endpoint Description**
-
-This API endpoint (**`/allDatasets`**) provides a method to retrieve detailed information about datasets from different databases. The endpoint supports a GET method that requires specifying a particular database from which to fetch datasets.
-
-### **HTTP Request Method**
-
--   **GET**
-
-### **Resource URL**
-
-`/allDatasets`
-
-### **Query Parameters**
-
--   **database**: A string identifier specifying the database from which to retrieve datasets. Accepted values are:
-
-    -   **SocioMap**: Retrieves datasets from the SocioMap database.
-
-    -   **ArchaMap**: Retrieves datasets from the ArchaMap database.
-
-### **Request Examples**
+- Endpoint: `GET /allDatasets`
+- Required param: `database`
+- Example requests:
 
 `GET /allDatasets?database=SocioMap`
 
 `GET /allDatasets?database=ArchaMap`
 
-### **Responses**
+Typical result:
+- Dataset catalog rows (for example `CMID`, `CMName`, `shortName`, `project`, `ApplicableYears`, `DatasetCitation`, `DatasetLocation`, `DatasetVersion`, `DatasetScope`, and related metadata).
 
-#### Successful Response
-
--   **Status Code**: 200 OK
-
--   **Content**: An array of objects, where each object represents a dataset with the following fields:
-
-    -   **nodeID**: Identifier of the dataset node.
-
-    -   **CMName**: CatMapper name associated with the dataset.
-
-    -   **CMID**: CatMapper ID for the dataset.
-
-    -   **shortName**: A shorter, more concise name for the dataset.
-
-    -   **project**: The project under which the dataset was created or is maintained.
-
-    -   **Unit**: The unit the dataset applies to.
-
-    -   **parent**: The parent dataset, if any.
-
-    -   **ApplicableYears**: The years to which the dataset is applicable.
-
-    -   **DatasetCitation**: Citation information for the dataset.
-
-    -   **District**: The district covered by the dataset.
-
-    -   **DatasetLocation**: URL or other location of the dataset.
-
-    -   **SubNational**: Indicates if the dataset is sub-national.
-
-    -   **DatasetVersion**: Version information of the dataset.
-
-    -   **DatasetScope**: The scope of the dataset.
-
-    -   **Subdistrict**: The subdistrict covered by the dataset.
-
-    -   **Note**: Additional notes or comments about the dataset.
-
-#### Error Response
-
--   **Status Code**: 500 Internal Server Error
-
--   **Content**: A string message describing the error, typically related to an invalid database specification or connection issues.
+For exhaustive field definitions, use [api.catmapper.org/docs](https://api.catmapper.org/docs).

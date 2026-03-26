@@ -14,7 +14,9 @@ Suppose one wants to conduct an analysis that links data on ethnicities from a n
 
 The first step in making that new dataset available for linkage is to identify the best matches of each the categories in that new dataset with categories that already exist in CatMapper.  The propose translate function identifies possible matches for categories from new datasets by using a combination of fuzzy text search, with the option of limiting searches by country, context, and dataset.   Here are instructions on how to use the propose translate function.
 
-![](media/Translating/Translating1.webp)
+*Figure 1. Propose Translate interface with file input, match column, and domain selection.*
+
+![Translate page with inputs for source file, match column, and domain](media/Translating/Translating1.webp)
 
 1) Navigate to the "Translate" tab and choose "Propose Translate"
 
@@ -28,7 +30,9 @@ The first step in making that new dataset available for linkage is to identify t
 
 6) Press the "Search button"
 
-![](media/Translating/Translating2.webp)
+*Figure 2. Propose Translate results table with match-type highlighting and review panel.*
+
+![Translate results table showing proposed matches and match-type color coding](media/Translating/Translating2.webp)
 
 7) Depending on the number items to match, the proposal algorithm may take seconds or minutes.  When it is done, it will show the spreadsheet on the right with proposed matches, with color coding for non-exact matches, including fuzzy matches based on lexical similarity (light orange), one-to-many matches where multiple CatMapper categories matched to the name in the spreadsheet (light red), many-to-one matches where the multiple names in the spreadsheet mapped to the same CatMapper category (purple), and no match (yellow).
 
@@ -101,4 +105,6 @@ To find the relevant CatMapper IDs for countries, one can also use the translate
 
 7) Once the dataset is trimmed, it should include a column for "Name" and "CMID_Country" (the name for CMID_Country will vary based on the column name used to match countries).  One can then return to the instructions above for matching the ethnicities (matching on "Name"), but now choose "Limit by Country" and choose "CMID_Country".
 
-![](media/Translating/Translating3.webp)
+*Figure 3. Propose Translate configured to limit matching using country CMIDs.*
+
+![Translate page configured to use country CMIDs for limiting search scope](media/Translating/Translating3.webp)

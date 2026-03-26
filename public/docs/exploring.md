@@ -22,39 +22,71 @@ In this example, we want to know about the ethnic group Yoruba. We go through th
 
 In this case, we want contextual information about the ethnic group Yoruba.
 
-1.  Go to [https://www.catmapper.org/sociomap]()
+1.  Go to [catmapper.org/sociomap](https://catmapper.org/sociomap)
 
-2.  Click on the *Explore* button.![](media/image2.webp)
+2.  Type the category name you are searching for.
 
-3.  Under *Select category domain*, choose which type of category (e.g., ethnicity, language, district, religion) you would like to search for*.*
+3.  Click on the `Explore` button.
 
-    -   Here, we want to search within the "Ethnicity" category.
+4.  Press the `Advanced Search` option.
 
-4.  In the box to the right type the category name you are searching for*.*
+5.  Under `Category Domain`, choose the domain you want to search, then choose the matching option under `Category Subdomain`.
 
-    -   Here, we are searching "Yoruba".
+    -   Here, we choose `Category Domain = ETHNICITY` and `Category Subdomain = ETHNICITY`.
 
-5.  If you would like to limit your search to a particular country, you can select the 'Advanced Search' option, choose that country in the *Country* box.
+6.  If you would like to limit your search to a particular country, choose that country in the *Country* box.
 
-6.  Once you press the *Search* icon, a set of search results will appear below.
+7.  Once you press the `Search` button, a set of search results will appear below.
 
-![](media/image3.webp)
+*Figure 1. Explore results for the query Yoruba in the ETHNICITY domain.*
 
-7.  Click on the row for the search result you would like to explore, and a *Info page* will open.
+![Explore results for Yoruba in the Ethnicity domain](media/current/explore-search-yoruba-results-cropped.webp)
 
-![](media/image4.webp)
+8.  Click the row for the result you want, then click the `View` button.
 
-The page that opens will include contextual information about the category, including the relevant countries and languages, datasets containing the category with information on population estimates, sample size, geospatial location and name used by the dataset.
+9.  The `Info` page opens with `NETWORK EXPLORER` as the default tab.
 
-Under the header Category Info, information about the ethnicity is summarized. Below, the 'Samples' table gives additional information about the datasets that contain information about the category. The 'Maps' tab shows geographic information about the category. The 'Network Explorer' tab displays information about the relationships that the category has with other categories within SocioMap.
+*Figure 2. Default `NETWORK EXPLORER` view with `CONTAINS` context for Yoruba.*
+
+![Network Explorer showing CONTAINS relationship context for Yoruba](media/current/explore-network-contains-cropped.webp)
+
+The `Info` page includes a consistent tab order:
+
+1.  `NETWORK EXPLORER`: shows category relationships (for example `CONTAINS`, `RELIGION_OF`, `DISTRICT_OF`, and `USES`).
+
+2.  `MAP`: shows map-based geography associated with the category.
+
+*Figure 3. `MAP` tab showing geography claims for Yoruba from linked datasets.*
+
+![Map tab for Yoruba showing mapped geography claims](media/current/explore-yoruba-map-tab-cropped.webp)
+
+3.  `TIMESPAN`: shows the temporal span of observations.
+
+*Figure 4. `TIMESPAN` tab showing temporal coverage of observations for Yoruba.*
+
+![Timespan tab for Yoruba showing observation coverage over time](media/current/explore-yoruba-timespan-tab-cropped.webp)
+
+4.  `DATASETS`: shows dataset-specific rows (location, years, sample, and source details).
+
+*Figure 5. `DATASETS` tab listing dataset-level records linked to Yoruba.*
+
+![DATASETS tab for Yoruba listing dataset-specific records](media/current/explore-yoruba-datasets-tab-cropped.webp)
+
+5.  `VIEW LOGS`: shows processing and write-log history for the selected item.
+
+*Figure 6. `VIEW LOGS` panel with process and status history for the selected item.*
+
+![View Logs panel showing process and status history](media/current/explore-log-page-full.webp)
 
 ## Question: How can I identify which datasets include information on a specific ethnicity, language, district, or religion?
 
 Now that we have accessed the contextual information about the category, we to know what datasets have information about the category of interest.
 
-The Dataset tab of the *Info Page* page contains a row for each dataset that contains information on a specific category. In some cases, a dataset may contain information on that category from different places or times. In those cases, there may be multiple rows for the same ethnicity from the same dataset.
+The `DATASETS` tab of the *Info Page* page contains a row for each dataset that contains information on a specific category. In some cases, a dataset may contain information on that category from different places or times. In those cases, there may be multiple rows for the same ethnicity from the same dataset.
 
-> ![](media/image5.webp)
+*Figure 7. `DATASETS` tab showing multiple dataset rows associated with Yoruba.*
+
+![Yoruba datasets listed in the Info page Samples table](media/current/explore-yoruba-datasets-tab-cropped.webp)
 
 In this case, there are many different datasets that contain information about Yoruba. Exploring the sample section shows that different datasets have information about Yoruba from Nigeria, Benin, and Ghana. In addition, some of the information from the dataset are from different times, and some are separated out between 'Men' and 'Women.'
 
@@ -64,17 +96,23 @@ Alternatively, the 'Network Explorer' tab can also visualize the information abo
 
 This will show links to all datasets with data relevant to the category.
 
-![](media/image6.webp)
+*Figure 8. `NETWORK EXPLORER` with relationship filter set to `USES`.*
 
-To explore metadata for a dataset of interest, hovering over the relevant node will display a summary of the dataset. Double-clicking a different node in the networkwill open the *Info page* page for that node. (*Note:* The *Network Explorer* only includes a maximum of 10 nodes. To view all available nodes, please look at the drop down list under *"Choose node to view relationship."*)
+![Network Explorer USES view showing dataset-to-category links](media/current/explore-network-uses-full.webp)
+
+To explore metadata for a dataset of interest, hover over the relevant node to view the information box summary. To open that node's full *Info page*, click the node, review the information box, and then press the `View` button. (*Note:* The *Network Explorer* only includes a maximum of 10 nodes. To view all available nodes, please look at the drop down list under *"Choose node to view relationship."*)
 
 In this case, we want to know more about the eHRAF dataset. We can view it from the 'Network Explorer' tab for Yoruba. If you hover over the node, a summary of the dataset will be displayed.
 
-![](media/image7.webp)
+*Figure 9. Dataset-node hover popup in `NETWORK EXPLORER` showing summary metadata.*
 
-Clicking the node will lead to the *Info page* for the eHRAF dataset. Here you can see all the other categories that are also described within that dataset.
+![Legacy dataset-node hover popup in the Network Explorer](media/image7.webp)
 
-![](media/image8.webp)
+After selecting the node and pressing `View`, the *Info page* opens for the eHRAF dataset. Here you can see all the other categories that are also described within that dataset.
+
+*Figure 10. Dataset-centered network view showing categories connected through `USES`.*
+
+![Dataset-centered network view of related categories](media/current/explore-dataset-centered-network-uses.webp)
 
 ## Question: How can I see how a dataset encodes a specific ethnicity, language, district, or religion?
 
@@ -86,9 +124,11 @@ Clicking the node will lead to the *Info page* for the eHRAF dataset. Here you c
 
 4.  This will show all USES ties from different datasets to the category of Yoruba
 
-5.  Hover over the link to the relevant dataset. It will show the variable and variable value used to encode that category. Here we see that the 2015 Nigeria Demographic and Health Survey (DHS) encodes Yoruba with the Key V131: 298
+5.  Hover over the link to the relevant dataset. It will show the variable and variable value used to encode that category. Here we see that the 2015 Nigeria Demographic and Health Survey (DHS) encodes Yoruba with `Key: V131 == 298`.
 
-> ![](media/image9.webp)
+*Figure 11. `USES` relationship popup showing `Key` and other tie-level properties.*
+
+![USES relationship popup showing Key and Name properties](media/current/explore-dataset-encoding-popup.webp)
 
 ## Question: How can I identify and explore ethnicities, languages, districts and religions that are related to a specific category?
 
@@ -96,19 +136,25 @@ In this case, we want to know what language(s) the Yoruba speak, what other ethn
 
 In the *Network Explorer* tab in the *Info page*, the drop down menu labeled "*Choose Relationship to View"* gives you the choice of exploring CONTAINS ties, LANGUAGE_OF ties, DISTRICT_OF ties, and USES ties which describe how different datasets encode the category.
 
-![](media/image10.webp)
+*Figure 12. `NETWORK EXPLORER` view with `CONTAINS` selected.*
+
+![Network Explorer showing CONTAINS relationship context](media/current/explore-network-contains-cropped.webp)
 
 Here, selecting CONTAINS in the *Relationship* dropdown, you can see that Yoruba contains several smaller ethnic categories(e.g. Ekiti, Ijebu, Ikale, Oyo, Ibarapa, Oworo, Igbeti, Egba, and Ede Ije are visible). You can also see that Yoruba is contained within the broader *Southeastern* category.
 
-![](media/image11.webp)
+*Figure 13. `NETWORK EXPLORER` view with `RELIGION_OF` selected.*
+
+![Network Explorer showing RELIGION_OF relationship](media/current/explore-network-religion-of-full.webp)
 
 Changing the *Relationship* dropdown to RELIGION_OF, you can see that the religion practiced by the Yoruba is Isese.
 
-![](media/image12.webp)
+*Figure 14. `NETWORK EXPLORER` view with `DISTRICT_OF` selected.*
+
+![Network Explorer showing DISTRICT_OF relationship](media/current/explore-network-district-of-full.webp)
 
 Changing the *Relationship* to DISTRICT_OF, you can see that the Yoruba live in Ghana, Benin, Nigeria, and Togo. In some examples, you may be able to find more specific administrative level districts by changing the Administrative level in the *Domain* drop down.
 
-To access additional information about a node seen within the *Network Explorer*, you can click the node of interest to access the *Info page*.
+To access additional information about a node seen within the *Network Explorer*, click the node, review the information box, and then press `View` to open its *Info page*.
 
 *Note:* The *Network Explorer* only includes a maximum of 10 nodes. To view all available nodes, please look at the drop-down list under *"Choose node to view relationship."*
 
@@ -116,7 +162,7 @@ To access additional information about a node seen within the *Network Explorer*
 
 In some cases, you may want to know what datasets have been cataloguedin SocioMap in general. To download the full current list of datasets, go to
 
-[https://www.catmapper.org/sociomap]()
+[catmapper.org/sociomap](https://catmapper.org/sociomap)
 
 Scroll to the box "Dataset Progress" and click on the "Download Dataset List". This will download the metadata on all Datasets currently catalogued in SocioMap.
 
@@ -124,32 +170,52 @@ You may be interested in what datasets exist for a country of interest. This can
 
 1.  Click on the *Explore* tab and choose *Search*.
 
-2.  Choose DATASET under *Select category type.*
+2.  Press the `Advanced Search` option.
 
-3.  Leave search term box blank*.*
+3.  Choose `Category Domain = DATASET` and `Category Subdomain = DATASET`.
 
-4.  If you would like to limit your search to a particular country, choose that country under the *Country* dropdown menu (under Advanced Search).
+4.  Leave search term box blank*.*
 
-5.  Once you press the *Search* icon, a set of search results will appear below.
+5.  If you would like to limit your search to a particular country, choose that country under the *Country* dropdown menu.
 
-![](media/image13.webp)
+6.  Once you press the *Search* icon, a set of search results will appear below.
+
+*Figure 15. Explore results for `Category Domain = DATASET` and `Category Subdomain = DATASET` across SocioMap.*
+
+![All datasets listed in Explore search results](media/current/explore-datasets-all-results.webp)
 
 Here, you can see a list of all the datasets stored in SocioMap.
 
-![](media/image14.webp) By checking the *Advanced search* box, you can then choose a country of interest from the *Country* dropdown menu. Here, we are looking at the datasets stored in SocioMap that are have information from Ghana.
+*Figure 16. DATASET search using `Advanced Search` with country filtering.*
+
+![Dataset search filtered with Advanced Search country criteria](media/current/explore-datasets-ghana-results.webp)
+
+After enabling `Advanced Search`, you can choose a country of interest from the *Country* dropdown menu. Here, we are looking at the datasets stored in SocioMap that have information from Ghana.
 
 ## Question: How can I find all the ethnicities associated with a specific country?
 
 1.  Click on the *Explore* tab and choose *Search*.
 
-2.  Choose ETHNICITY under *Select category type.*
+2.  Press the `Advanced Search` option.
 
-3.  Leave *search box* blank.
+3.  Choose `Category Domain = ETHNICITY` and `Category Subdomain = ETHNICITY`.
 
-4.  To limit your search to a particular country, check the *Advanced search* box and choose that country under the *Country* dropdown menu.
+4.  Leave *search box* blank.
 
-5.  Once you press the *Search* button, a set of search results will appear below.
+5.  To limit your search to a particular country, choose that country under the *Country* dropdown menu.
 
-![](media/image15.webp)
+6.  Once you press the *Search* button, a set of search results will appear below.
+
+*Figure 17. Explore results for `Category Domain = ETHNICITY` and `Category Subdomain = ETHNICITY` filtered to Ghana.*
+
+![Explore results listing ethnicities associated with Ghana](media/current/explore-ethnicities-ghana-results.webp)
 
 In this case, we are looking for all the ethnicities associated with Ghana. You can see that there are a total of 166 associated ethnicities stored within SocioMap. Clicking the row will allow you get contextual information about that Ethnicity.
+
+## Question: What does the log page show?
+
+To open logs for the selected item, click the `VIEW LOGS` button on the right side of the page header, above the tab row. The log view shows timestamped workflow records (for example upload/edit tasks), including status progression, task/job identifiers, operation type, and affected graph fields such as `CMID`, `datasetID`, `Key`, `Name`, and `label`. Use it to audit what changed and diagnose failures or unexpected results.
+
+*Figure 18. `VIEW LOGS` page with timestamped workflow history and affected fields.*
+
+![Log page view showing process and status logging in CatMapper](media/current/explore-log-page-full.webp)

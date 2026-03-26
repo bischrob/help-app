@@ -20,7 +20,7 @@ import {
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
-import packageJson from '../package.json';
+import catmapperJsPackage from './catmapperjs-package.json';
 import { theme } from './theme';
 
 const BASE_PATH = (import.meta.env.BASE_URL || '/').replace(/\/+$/, '');
@@ -118,6 +118,7 @@ const markdownContainerSx = {
 
 function App() {
   const drawerWidth = 240;
+  const navbarBlack = theme.palette.primary.main;
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const [navLinks, setNavLinks] = useState([]);
   const [pageHeadings, setPageHeadings] = useState([]);
@@ -147,7 +148,7 @@ function App() {
   }, []);
 
   const drawerContent = (
-    <Box sx={{ overflow: 'auto' }}>
+    <Box sx={{ overflow: 'auto', bgcolor: navbarBlack, color: '#fff', minHeight: '100%' }}>
       <Box sx={{ p: 0, m: 0, display: 'block', lineHeight: 0 }}>
         <Box
           component="img"
@@ -166,8 +167,18 @@ function App() {
                   component="a"
                   href={item.href}
                   onClick={handleNavClick}
+                  sx={{
+                    color: '#fff',
+                    '&:hover': { bgcolor: 'rgba(255,255,255,0.08)' },
+                  }}
                 >
-                  <ListItemText primary={item.title} />
+                  <ListItemText
+                    primary={item.title}
+                    primaryTypographyProps={{
+                      fontWeight: 700,
+                      textDecoration: 'underline',
+                    }}
+                  />
                 </ListItemButton>
               </ListItem>
             );
@@ -179,8 +190,18 @@ function App() {
                 component={RouterLink}
                 to={`/${item.id}`}
                 onClick={handleNavClick}
+                sx={{
+                  color: '#fff',
+                  '&:hover': { bgcolor: 'rgba(255,255,255,0.08)' },
+                }}
               >
-                <ListItemText primary={item.title} />
+                <ListItemText
+                  primary={item.title}
+                  primaryTypographyProps={{
+                    fontWeight: 700,
+                    textDecoration: 'underline',
+                  }}
+                />
               </ListItemButton>
             </ListItem>
           );
@@ -193,7 +214,8 @@ function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <BrowserRouter basename={BASE_PATH || undefined}>
-        <Box sx={{ display: 'flex', minHeight: '100vh' }}>
+        <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', bgcolor: '#fff' }}>
+          <Box sx={{ display: 'flex', flexGrow: 1 }}>
 
           <AppBar
             position="fixed"
@@ -221,7 +243,7 @@ function App() {
                   src={withBasePath('/media/catmapper_small.webp')}
                   alt="CatMapper logo"
                   sx={{
-                    width: { xs: 270, sm: 315 },
+                    width: 250,
                     height: 'auto',
                     display: 'block',
                     filter: 'brightness(0) invert(1)',
@@ -253,7 +275,12 @@ function App() {
             sx={{
               width: drawerWidth,
               display: { xs: 'block', sm: 'none' },
-              [`& .MuiDrawer-paper`]: { width: drawerWidth, boxSizing: 'border-box' },
+              [`& .MuiDrawer-paper`]: {
+                width: drawerWidth,
+                boxSizing: 'border-box',
+                bgcolor: navbarBlack,
+                color: '#fff',
+              },
             }}
           >
             {drawerContent}
@@ -264,7 +291,12 @@ function App() {
             sx={{
               width: drawerWidth,
               display: { xs: 'none', sm: 'block' },
-              [`& .MuiDrawer-paper`]: { width: drawerWidth, boxSizing: 'border-box' },
+              [`& .MuiDrawer-paper`]: {
+                width: drawerWidth,
+                boxSizing: 'border-box',
+                bgcolor: navbarBlack,
+                color: '#fff',
+              },
             }}
             open
           >
@@ -276,6 +308,7 @@ function App() {
             sx={{
               flexGrow: 1,
               width: { sm: `calc(100% - ${drawerWidth}px)` },
+              bgcolor: '#fff',
               px: { xs: 0, sm: 2, lg: 3 },
               pb: { xs: 3, sm: 4 },
             }}
@@ -311,6 +344,7 @@ function App() {
                   top: 84,
                   maxHeight: 'calc(100vh - 96px)',
                   overflowY: 'auto',
+                  bgcolor: '#fff',
                   borderLeft: '1px solid #e0e0e0',
                   pl: 2,
                   pr: 1,
@@ -346,62 +380,63 @@ function App() {
                 </List>
               </Box>
             </Box>
-            <Box component="footer" sx={{ mt: 4 }}>
-              <Divider sx={{ mt: 2, mb: 0 }} />
+          </Box>
+          </Box>
+          <Box component="footer" sx={{ width: '100%', position: 'relative', zIndex: (theme) => theme.zIndex.drawer + 2 }}>
+            <Divider sx={{ mt: 2, mb: 0 }} />
+            <Box
+              sx={{
+                display: 'flex',
+                alignItems: { xs: 'flex-start', md: 'center' },
+                justifyContent: 'space-between',
+                mt: 0,
+                mb: 0,
+                px: 2,
+                py: 2,
+                bgcolor: navbarBlack,
+                color: 'white',
+                gap: 2,
+                flexDirection: { xs: 'column', md: 'row' },
+              }}
+            >
+              <Box sx={{ alignSelf: { xs: 'flex-start', md: 'center' } }}>
+                <MuiLink href="https://catmapper.org" aria-label="CatMapper home" sx={{ display: 'inline-flex' }}>
+                  <Box
+                    component="img"
+                    src={withBasePath('/media/catmapper_small.webp')}
+                    alt="CatMapper logo"
+                    sx={{ display: 'block', height: '7vh', maxHeight: 56, width: 'auto' }}
+                  />
+                </MuiLink>
+                <Typography variant="caption" sx={{ color: 'gray', fontSize: '0.7rem', display: 'block', mt: 0.5 }}>
+                  CatMapper v{catmapperJsPackage.version}
+                </Typography>
+              </Box>
               <Box
                 sx={{
                   display: 'flex',
-                  alignItems: { xs: 'flex-start', md: 'center' },
-                  justifyContent: 'space-between',
-                  mt: 0,
-                  mb: 0,
-                  px: 2,
-                  py: 2,
-                  bgcolor: '#111',
-                  color: 'white',
-                  gap: 2,
-                  flexDirection: { xs: 'column', md: 'row' },
+                  flexWrap: 'wrap',
+                  justifyContent: { xs: 'flex-start', md: 'flex-end' },
+                  rowGap: 1,
+                  columnGap: 1.5,
+                  maxWidth: 760,
                 }}
               >
-                <Box sx={{ alignSelf: { xs: 'flex-start', md: 'center' } }}>
-                  <MuiLink href="https://catmapper.org" aria-label="CatMapper home" sx={{ display: 'inline-flex' }}>
-                    <Box
-                      component="img"
-                      src={withBasePath('/media/catmapper_small.webp')}
-                      alt="CatMapper logo"
-                      sx={{ display: 'block', height: '7vh', maxHeight: 56, width: 'auto' }}
-                    />
+                {footerLinks.map((link) => (
+                  <MuiLink
+                    key={link.url}
+                    href={link.url}
+                    sx={{
+                      color: 'white',
+                      textDecoration: 'none',
+                      fontSize: '0.95rem',
+                      lineHeight: 1.2,
+                      '&:hover': { textDecoration: 'underline' },
+                    }}
+                  >
+                    {link.name}
                   </MuiLink>
-                  <Typography variant="caption" sx={{ color: 'gray', fontSize: '0.7rem', display: 'block', mt: 0.5 }}>
-                    CatMapper v{packageJson.version}
-                  </Typography>
-                </Box>
-                <Box
-                  sx={{
-                    display: 'flex',
-                    flexWrap: 'wrap',
-                    justifyContent: { xs: 'flex-start', md: 'flex-end' },
-                    rowGap: 1,
-                    columnGap: 1.5,
-                    maxWidth: 760,
-                  }}
-                >
-                  {footerLinks.map((link) => (
-                    <MuiLink
-                      key={link.url}
-                      href={link.url}
-                      sx={{
-                        color: 'white',
-                        textDecoration: 'none',
-                        fontSize: '0.95rem',
-                        lineHeight: 1.2,
-                        '&:hover': { textDecoration: 'underline' },
-                      }}
-                    >
-                      {link.name}
-                    </MuiLink>
-                  ))}
-                </Box>
+                ))}
               </Box>
             </Box>
           </Box>

@@ -45,27 +45,16 @@ they are related to each other, and how they are encoded by diverse
 
 **Table 1. Examples of CatMapper Category Domains and Subdomains**
 
-  -------------------------------------------------------------------------
-  App        Primary Domain     Subdomains
-  ---------- ------------------ -------------------------------------------
-  SocioMap   ETHNICITY          
-
-  SocioMap   LANGUOID           LANGUAGE, DIALECT, FAMILY
-
-  SocioMap   RELIGION           
-
-  ArchaMap   CERAMIC            CERAMIC_TYPE, CERAMIC_WARE
-
-  ArchaMap   PROJECTILE_POINT   PROJECTILE_POINT_CLUSTER,
-                                PROJECTILE_POINT_TYPE
-
-  ArchaMap   PERIOD             
-
-  All        AREA               ADM0-ADM4, ADME, ADMD, ADMX, PPL, SITE,
-                                REGION
-
-  All        GENERIC            
-  -------------------------------------------------------------------------
+| App | Primary Domain | Subdomains |
+| --- | --- | --- |
+| SocioMap | ETHNICITY |  |
+| SocioMap | LANGUOID | LANGUAGE, DIALECT, FAMILY |
+| SocioMap | RELIGION |  |
+| ArchaMap | CERAMIC | CERAMIC_TYPE, CERAMIC_WARE |
+| ArchaMap | PROJECTILE_POINT | PROJECTILE_POINT_CLUSTER, PROJECTILE_POINT_TYPE |
+| ArchaMap | PERIOD |  |
+| All | AREA | ADM0-ADM4, ADME, ADMD, ADMX, PPL, SITE, REGION |
+| All | GENERIC |  |
 
 CatMapper stores contextual information about categories through a range
 of ties (e.g., contains, district_of, language_of, religion_of) (**Table
@@ -73,19 +62,13 @@ of ties (e.g., contains, district_of, language_of, religion_of) (**Table
 
 **Table 2. Ties that store contextual information about categories**
 
-  -----------------------------------------------------------------------
-  Tie                         Description
-  --------------------------- -------------------------------------------
-  X CONTAINS Y                Y is a sub-category of X
-
-  X DISTRICT_OF Y             X is a geospatial locale for Y
-
-  X LANGUAGE_OF Y             X is a language associated with Y
-
-  X RELIGION_OF Y             X is a religion associated with Y
-
-  X USES Y                    Dataset X uses the category Y
-  -----------------------------------------------------------------------
+| Tie | Description |
+| --- | --- |
+| X CONTAINS Y | Y is a sub-category of X |
+| X DISTRICT_OF Y | X is a geospatial locale for Y |
+| X LANGUAGE_OF Y | X is a language associated with Y |
+| X RELIGION_OF Y | X is a religion associated with Y |
+| X USES Y | Dataset X uses the category Y |
 
 CatMapper catalogues how thousands of external datasets store data on
 specific categories from the domains (e.g. ethnicity, language,
@@ -101,18 +84,12 @@ they assign to Greenland.
 
 **Table 3. How different datasets encode information about Greenland**
 
-  -------------------------------------------------------------------------
-  Dataset     KEY                NAME                    PARENT
-  ----------- ------------------ ----------------------- ------------------
-  GADM        GID: GRL           Greenland               
-
-  GEONAMES    geonameid: 3425505 Kalaallit               Kingdom of Denmark
-                                 Nunaat,Grønland,...     
-
-  STATOIDS    HASC: GL           Greenland               
-
-  MARC        ID: gl             Greenland               North America
-  -------------------------------------------------------------------------
+| Dataset | KEY | NAME | PARENT |
+| --- | --- | --- | --- |
+| GADM | GID: GRL | Greenland |  |
+| GEONAMES | geonameid: 3425505 | Kalaallit Nunaat, Grønland, ... | Kingdom of Denmark |
+| STATOIDS | HASC: GL | Greenland |  |
+| MARC | ID: gl | Greenland | North America |
 
 CatMapper uses a network to represent the different claims (e.g., about
 names, about parents) each dataset makes about Greenland. Specifically,
@@ -126,7 +103,7 @@ to Greenland.
 
 **Figure 1. Contents of the USES tie from Geonames to Greenland.**
 
-![](media/image1.webp)
+![Geonames to Greenland USES tie popup showing Key, Name, and contextual properties](media/current/introduction-geonames-to-greenland-uses-tie.webp)
 
 Indeed, whenever CatMapper catalogues how a dataset uses a specific
 category, it stores this in such a **USES tie** from the dataset to the
@@ -143,9 +120,8 @@ Table 4 illustrates key metadata and contextual properties that USES ties can st
 
 **Table 4.  Metadata and contextual properties that can be stored in USE ties**
 
-|              |                                                                                                                                                                                                                                     |
-| ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Property** |                                                                                                                                                                                                                                     |
+| Property | Description |
+| --- | --- |
 | Name         | List of names the dataset uses for category                                                                                                                                                                                         |
 | Key          | Unique identifier dataset uses to encode a specific category. A simple key involves a single variable and value (e.g., V131 = 3). More complex keys can involve combinations of variables and values (e.g., V131 = 3 AND V024 = 1). |
 | country      | CatMapper id for country or countries that the datasets claims are associated with the category                                                                                                                                     |
@@ -158,6 +134,7 @@ Table 4 illustrates key metadata and contextual properties that USES ties can st
 | yearStart    | First year the category existed according to the dataset                                                                                                                                                                            |
 | yearEnd      | Last year the category existed according to the dataset                                                                                                                                                                             |
 | period       | CatMapper id for the time span of the category                                                                                                                                                                                      |
+
 A **category set** is the set of categories in a specific domain encoded
 by a specific dataset (e.g., ethnicities coded in DHS Guatemala 1995
 survey, language spoken coded in WVS Cote D'Ivoire).
