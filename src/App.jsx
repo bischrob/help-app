@@ -158,7 +158,7 @@ function App() {
       <Box sx={{ p: 0, m: 0, display: 'block', lineHeight: 0 }}>
         <Box
           component="img"
-          src={withBasePath('/media/help_logo_trimmed.png')}
+          src={withBasePath('/media/help_logo_trimmed.webp')}
           alt="CatMapper help logo"
           sx={{ width: '100%', maxWidth: 'none', height: 'auto', display: 'block' }}
         />

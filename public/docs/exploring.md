@@ -40,7 +40,7 @@ In this case, we want contextual information about the ethnic group Yoruba.
 
 *Figure 1. Explore results for the query Yoruba in the ETHNICITY domain.*
 
-![Explore results for Yoruba in the Ethnicity domain](media/current/explore-search-yoruba-results-cropped.webp)
+![Explore results for Yoruba in the Ethnicity domain](screenshots/explore-search-yoruba-results-cropped.webp)
 
 8.  Click the row for the result you want, then click the `View` button.
 
@@ -48,7 +48,7 @@ In this case, we want contextual information about the ethnic group Yoruba.
 
 *Figure 2. Default `NETWORK EXPLORER` view with `CONTAINS` context for Yoruba.*
 
-![Network Explorer showing CONTAINS relationship context for Yoruba](media/current/explore-network-contains-cropped.webp)
+![Network Explorer showing CONTAINS relationship context for Yoruba](screenshots/explore-network-contains-cropped.webp)
 
 The `Info` page includes a consistent tab order:
 
@@ -58,25 +58,25 @@ The `Info` page includes a consistent tab order:
 
 *Figure 3. `MAP` tab showing geography claims for Yoruba from linked datasets.*
 
-![Map tab for Yoruba showing mapped geography claims](media/current/explore-yoruba-map-tab-cropped.webp)
+![Map tab for Yoruba showing mapped geography claims](screenshots/explore-yoruba-map-tab-cropped.webp)
 
 3.  `TIMESPAN`: shows the temporal span of observations.
 
 *Figure 4. `TIMESPAN` tab showing temporal coverage of observations for Yoruba.*
 
-![Timespan tab for Yoruba showing observation coverage over time](media/current/explore-yoruba-timespan-tab-cropped.webp)
+![Timespan tab for Yoruba showing observation coverage over time](screenshots/explore-yoruba-timespan-tab-cropped.webp)
 
 4.  `DATASETS`: shows dataset-specific rows (location, years, sample, and source details).
 
 *Figure 5. `DATASETS` tab listing dataset-level records linked to Yoruba.*
 
-![DATASETS tab for Yoruba listing dataset-specific records](media/current/explore-yoruba-datasets-tab-cropped.webp)
+![DATASETS tab for Yoruba listing dataset-specific records](screenshots/explore-yoruba-datasets-tab-cropped.webp)
 
 5.  `VIEW LOGS`: shows processing and write-log history for the selected item.
 
 *Figure 6. `VIEW LOGS` panel with process and status history for the selected item.*
 
-![View Logs panel showing process and status history](media/current/explore-log-page-full.webp)
+![View Logs panel showing process and status history](screenshots/yoruba_logs.png)
 
 ## Question: How can I identify which datasets include information on a specific ethnicity, language, district, or religion?
 
@@ -86,7 +86,7 @@ The `DATASETS` tab of the *Info Page* page contains a row for each dataset that 
 
 *Figure 7. `DATASETS` tab showing multiple dataset rows associated with Yoruba.*
 
-![Yoruba datasets listed in the Info page Samples table](media/current/explore-yoruba-datasets-tab-cropped.webp)
+![Yoruba datasets listed in the Info page Samples table](screenshots/explore-yoruba-datasets-tab-cropped.webp)
 
 In this case, there are many different datasets that contain information about Yoruba. Exploring the sample section shows that different datasets have information about Yoruba from Nigeria, Benin, and Ghana. In addition, some of the information from the dataset are from different times, and some are separated out between 'Men' and 'Women.'
 
@@ -98,21 +98,21 @@ This will show links to all datasets with data relevant to the category.
 
 *Figure 8. `NETWORK EXPLORER` with relationship filter set to `USES`.*
 
-![Network Explorer USES view showing dataset-to-category links](media/current/explore-network-uses-full.webp)
+![Network Explorer USES view showing dataset-to-category links](screenshots/explore-network-uses-full.webp)
 
 To explore metadata for a dataset of interest, hover over the relevant node to view the information box summary. To open that node's full *Info page*, click the node, review the information box, and then press the `View` button. (*Note:* The *Network Explorer* only includes a maximum of 10 nodes. To view all available nodes, please look at the drop down list under *"Choose node to view relationship."*)
 
-In this case, we want to know more about the eHRAF dataset. We can view it from the 'Network Explorer' tab for Yoruba. If you hover over the node, a summary of the dataset will be displayed.
+In this case, we want to know more about the Human Relations Area Files (eHRAF) dataset. We can view it from the 'Network Explorer' tab for Yoruba. If you hover over the node, a summary of the dataset will be displayed.
 
 *Figure 9. Dataset-node hover popup in `NETWORK EXPLORER` showing summary metadata.*
 
-![Legacy dataset-node hover popup in the Network Explorer](media/image7.webp)
+![Dataset-node hover popup for eHRAF in the Network Explorer](screenshots/yoruba_ehraf.webp)
 
 After selecting the node and pressing `View`, the *Info page* opens for the eHRAF dataset. Here you can see all the other categories that are also described within that dataset.
 
 *Figure 10. Dataset-centered network view showing categories connected through `USES`.*
 
-![Dataset-centered network view of related categories](media/current/explore-dataset-centered-network-uses.webp)
+![Dataset-centered network view of related categories](screenshots/SD13_network_uses_cropped.webp)
 
 ## Question: How can I see how a dataset encodes a specific ethnicity, language, district, or religion?
 
@@ -124,11 +124,11 @@ After selecting the node and pressing `View`, the *Info page* opens for the eHRA
 
 4.  This will show all USES ties from different datasets to the category of Yoruba
 
-5.  Hover over the link to the relevant dataset. It will show the variable and variable value used to encode that category. Here we see that the 2015 Nigeria Demographic and Health Survey (DHS) encodes Yoruba with `Key: V131 == 298`.
+5.  Hover over the link to the relevant dataset. It will show the variable and variable value used to encode that category. Here we see that the Human Relations Area Files encodes Yoruba with `Key: HRAFCCC_ID == 2351`.
 
 *Figure 11. `USES` relationship popup showing `Key` and other tie-level properties.*
 
-![USES relationship popup showing Key and Name properties](media/current/explore-dataset-encoding-popup.webp)
+![USES relationship popup showing Key and other tie-level properties for Yoruba](screenshots/ehraf_uses_yoruba.webp)
 
 ## Question: How can I identify and explore ethnicities, languages, districts and religions that are related to a specific category?
 
@@ -138,19 +138,19 @@ In the *Network Explorer* tab in the *Info page*, the drop down menu labeled "*C
 
 *Figure 12. `NETWORK EXPLORER` view with `CONTAINS` selected.*
 
-![Network Explorer showing CONTAINS relationship context](media/current/explore-network-contains-cropped.webp)
+![Network Explorer showing CONTAINS relationship context](screenshots/explore-network-contains-cropped.webp)
 
 Here, selecting CONTAINS in the *Relationship* dropdown, you can see that Yoruba contains several smaller ethnic categories(e.g. Ekiti, Ijebu, Ikale, Oyo, Ibarapa, Oworo, Igbeti, Egba, and Ede Ije are visible). You can also see that Yoruba is contained within the broader *Southeastern* category.
 
 *Figure 13. `NETWORK EXPLORER` view with `RELIGION_OF` selected.*
 
-![Network Explorer showing RELIGION_OF relationship](media/current/explore-network-religion-of-full.webp)
+![Network Explorer showing RELIGION_OF relationship](screenshots/explore-network-religion-of-full.webp)
 
 Changing the *Relationship* dropdown to RELIGION_OF, you can see that the religion practiced by the Yoruba is Isese.
 
 *Figure 14. `NETWORK EXPLORER` view with `DISTRICT_OF` selected.*
 
-![Network Explorer showing DISTRICT_OF relationship](media/current/explore-network-district-of-full.webp)
+![Network Explorer showing DISTRICT_OF relationship](screenshots/explore-network-district-of-full.webp)
 
 Changing the *Relationship* to DISTRICT_OF, you can see that the Yoruba live in Ghana, Benin, Nigeria, and Togo. In some examples, you may be able to find more specific administrative level districts by changing the Administrative level in the *Domain* drop down.
 
@@ -218,4 +218,4 @@ To open logs for the selected item, click the `VIEW LOGS` button on the right si
 
 *Figure 18. `VIEW LOGS` page with timestamped workflow history and affected fields.*
 
-![Log page view showing process and status logging in CatMapper](media/current/explore-log-page-full.webp)
+![Log page view showing process and status logging in CatMapper](screenshots/yoruba_logs.png)

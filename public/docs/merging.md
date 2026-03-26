@@ -204,7 +204,7 @@ The merge-template graph is centered on:
 
 *Figure 4. Merge-template graph structure linking `MERGING`, `STACK`, `DATASET`, `VARIABLE`, and `EQUIVALENT`.*
 
-![Merge-template graph structure showing MERGING, STACK, DATASET, VARIABLE, and EQUIVALENT](media/Merging/merge-template-structure.png)
+![Merge-template graph structure showing MERGING, STACK, DATASET, VARIABLE, and EQUIVALENT](media/Merging/merge-template-structure.webp)
 
 ### Core structure
 

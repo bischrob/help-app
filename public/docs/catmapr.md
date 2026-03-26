@@ -2,7 +2,7 @@
 
 *Figure 1. CatMapR package hex logo.*
 
-<img src="media/CatMapR/catmapr-hex-logo.png" alt="CatMapR hex logo" width="225" />
+<img src="media/CatMapR/catmapr-hex-logo.webp" alt="CatMapR hex logo" width="225" />
 
 **CatMapR** is an R package that wraps CatMapper API endpoints so you can run CatMapper data discovery, translation, and upload workflows from reproducible R scripts.
 

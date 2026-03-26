@@ -20,6 +20,43 @@ if [[ ! -d "${BUILD_DIR}" ]]; then
   exit 1
 fi
 
+echo "[help-app] Generating SPA route entrypoints..."
+node <<'NODE'
+const fs = require('fs');
+const path = require('path');
+
+const appDir = process.cwd();
+const buildDir = path.join(appDir, 'build');
+const sidebarPath = path.join(appDir, 'public', 'docs', 'sidebar.json');
+const indexHtmlPath = path.join(buildDir, 'index.html');
+
+if (!fs.existsSync(sidebarPath)) {
+  throw new Error(`Missing sidebar config: ${sidebarPath}`);
+}
+if (!fs.existsSync(indexHtmlPath)) {
+  throw new Error(`Missing build index.html: ${indexHtmlPath}`);
+}
+
+const sidebar = JSON.parse(fs.readFileSync(sidebarPath, 'utf8'));
+const routeIds = Array.from(
+  new Set(
+    (sidebar.docs || [])
+      .map((item) => item && item.id)
+      .filter((id) => typeof id === 'string' && id.length > 0 && id !== 'index')
+  )
+);
+const indexHtml = fs.readFileSync(indexHtmlPath, 'utf8');
+
+for (const id of routeIds) {
+  fs.writeFileSync(path.join(buildDir, `${id}.html`), indexHtml);
+  const routeDir = path.join(buildDir, id);
+  fs.mkdirSync(routeDir, { recursive: true });
+  fs.writeFileSync(path.join(routeDir, 'index.html'), indexHtml);
+}
+
+console.log(`[help-app] Route entrypoints generated for: ${routeIds.join(', ')}`);
+NODE
+
 sync_dir() {
   local src_dir="$1"
   local dst_dir="$2"
