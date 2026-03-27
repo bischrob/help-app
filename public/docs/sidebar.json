@@ -8,6 +8,7 @@
         {"title": "Uploading", "id": "uploading"},
         {"title": "Merging", "id": "merging"},
         {"title": "API", "id": "API"},
-        {"title": "CatMapR", "id": "catmapr"}
+        {"title": "CatMapR", "id": "catmapr"},
+        {"title": "Semantic Schema Documentation", "id": "semantic_schema_documentation"}
     ]
 }
