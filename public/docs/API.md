@@ -59,6 +59,25 @@ Typical result:
 
 For full schema details and edge cases, use [api.catmapper.org/docs](https://api.catmapper.org/docs).
 
+## API Vignette: Retrieve Canonical Node Page JSON
+
+Use `GET /entity/{database}/{cmid}.json` when you want the full machine-readable payload for a node Explore page.
+
+- Endpoint: `GET /entity/{database}/{cmid}.json`
+- Required path params: `database`, `cmid`
+- Example requests:
+
+`GET /entity/SocioMap/SM1.json`
+
+`GET /entity/ArchaMap/AM1.json`
+
+Typical result:
+- Aggregated node-page JSON with fields such as `version`, `resourceType`, `database`, `cmid`, `info`, `categoryPage`, `geometry`, `networks`, and optional `mergeTemplateSummary`.
+
+In the CatMapper web app, this is the endpoint used by the `Download JSON` button on node Explore pages.
+
+For the authoritative request/response schema, use [api.catmapper.org/docs](https://api.catmapper.org/docs).
+
 ## API Vignette: Retrieve Dataset Details
 
 Use `GET /dataset` to inspect how a specific dataset node links to categories (including relationship properties like `Key`).
