@@ -1,9 +1,13 @@
 # How-to: Merging
 
-Under development. Please contact support\@catmapper.org for assistance.
-
 ## 1. Introduction
 CatMapper helps users merge data across datasets by complex categories, like ethnicities, languages, districts, and religions.  It also helps users store and share decisions they make for specific merges.
+
+The Merge page currently has three workflows:
+
+1. **Propose merge** for generating exact, extended, or cross-domain category matches
+2. **Join Datasets** for combining two uploaded files by CatMapper IDs
+3. **Download merge template** for reviewing a saved merge template, downloading link files, and generating merge syntax bundles
 
 For example, a user may want to bring together:
 
@@ -147,13 +151,18 @@ The result will look like this (table output abbreviated for space):
 
 ### Step-by-Step Guide
 
-1. **To use this feature, each dataset must already include:**
+1. **Choose how each uploaded file will identify its dataset**
 
-> - A datasetID column identifying the dataset (you can obtain this from the [Exploring](/exploring) section of CatMapper by searching by *DATASET* and then copying the CMID that is listed for that dataset). The CMID for each category will be obtained automatically from the system.
+> The Join Datasets panel accepts two uploaded files at a time.
 
-> - Any original Key columns used in the translation process
+> For each side, you can either:
 
-> The original key columns for the example datasets above are the GID and geonameid columns.
+> - enter the dataset CMID in the `datasetID` textbox, or
+> - leave the textbox blank and include a `datasetID` column in every row of the uploaded file.
+
+> If you leave the textbox blank, every row in that file must already contain a valid `datasetID` value such as `SD123` or `AD456`.
+
+> Each uploaded file must also still contain the original translated Key columns used to connect rows to CatMapper categories.
 
 > If your dataset has not yet been translated, please visit the [Translating](/translating) page before continuing.
 
@@ -165,13 +174,13 @@ The result will look like this (table output abbreviated for space):
 
 > Repeat the same step on the right side in Upload second Dataset.
 
-> If you accidentally upload the wrong file, click RESET IMPORTED FILE to clear it and try again.
+> Choose the relevant category domain before merging. For example, use `ETHNICITY` for ethnic groups or `AREA` for district-level datasets.
 
 3. **Joining Datasets**
 
 > Once both datasets have been uploaded: click the MERGE DATASETS button.
 
-> The system will automatically match rows from each dataset that share the same CMID.
+> The system resolves the uploaded keys to CatMapper IDs within the selected domain, then matches rows from each file that share the same CMID.
 
 > The resulting merged file will retain all original columns from both datasets and join them by matching CMID values.
 
@@ -185,15 +194,27 @@ The result will look like this (table output abbreviated for space):
 
 > If either dataset is missing a datasetID column, the merge will not be possible. Please ensure you’ve used the translation tool beforehand.
 
-> The merge only works with two datasets at a time.
+> The tool merges two uploaded files at a time, but each file may contain one or more datasetIDs if those values are supplied row-by-row.
 
 > Merging does not currently support fuzzy or hierarchical matching--only exact CMID matches will be used.
 
 > Need help preparing your data for merging? Visit [Translating](/translating) or contact [support@catmapper.org](mailto:support@catmapper.org).
 
-## 4. Storing Merge Templates
+## 4. Merge Templates, Link Files, and Merge Syntax
 
-Merge templates are the structure CatMapper uses to store merge decisions so they can be reused and audited later.
+Merge templates are the reusable CatMapper structures that store a merge design after you decide how datasets, variables, and category equivalences should line up.
+
+In the current app, merge templates appear in two places:
+
+1. on the **Merge** page under **Download merge template**
+2. on the **Explore** page for `MERGING` and `STACK` nodes under the **Merging Template** tab
+
+### Template network structure
+
+The new merge-template network has two layers:
+
+1. a template layer that groups datasets and variables into stacks
+2. an equivalence layer that records how dataset-specific category keys map onto canonical categories within each stack
 
 The merge-template graph is centered on:
 
@@ -204,7 +225,7 @@ The merge-template graph is centered on:
 
 *Figure 4. Merge-template graph structure linking `MERGING`, `STACK`, `DATASET`, `VARIABLE`, and `EQUIVALENT`.*
 
-![Merge-template graph structure showing MERGING, STACK, DATASET, VARIABLE, and EQUIVALENT](media/Merging/merge-template-structure.webp)
+![Merge-template graph structure showing MERGING, STACK, DATASET, VARIABLE, and EQUIVALENT](media/Merging/FullMergingTemplateNetwork.drawio.svg)
 
 ### Core structure
 
@@ -212,10 +233,17 @@ The merge-template graph is centered on:
 
 ![Merge-template flow diagram from MERGING to STACK, DATASET, USES, CATEGORY, and VARIABLE](media/Merging/merge-template-flow-smartart.svg)
 
-This gives two layers:
+In the current CatMapperAPI and CatMapperJS implementation, those pieces are used as follows:
 
-1. dataset/category encoding via `USES`,
-2. merge-template alignment and variable mapping via `MERGING` and `EQUIVALENT`.
+- `MERGING` node: stores the overall merge template and its metadata
+- `MERGING` tie from `MERGING` to `STACK`: assigns one or more stacks to the template
+- `MERGING` tie from `STACK` to `DATASET`: places datasets into the stack that will be harmonized together
+- `USES` tie from `DATASET` to `CATEGORY`: records the dataset-specific key already stored in CatMapper
+- `MERGING` tie from `STACK` to `VARIABLE`: stores stack-level variable behavior such as `varName`, `stackTransform`, `variableFilter`, `summaryStatistic`, `summaryFilter`, and `summaryWeight`
+- `MERGING` tie from `DATASET` to `VARIABLE`: stores dataset-specific variable information scoped by `stack` and `Key`, including `datasetTransform`
+- `EQUIVALENT` tie between `CATEGORY` nodes: stores stack-scoped and dataset-scoped category mappings used to build link files and merge syntax
+
+An `EQUIVALENT` tie where the original and equivalent CMIDs are the same is a self-reference. That means the dataset key already points to the canonical category used by the stack. When the CMIDs differ, the tie records a reassignment from a dataset-specific category to the canonical category used for the merge.
 
 ### Upload table structures
 
@@ -223,22 +251,109 @@ The merge-template workflow supports four practical table shapes:
 
 *Figure 6. Upload table structures used across merge-template creation and updates.*
 
-![Upload table structure figure for merge-template workflows](media/Merging/merge-template-upload-structures.webp)
+![Upload table structure figure for merge-template workflows](media/Merging/FullMergingTemplateTables.drawio.svg)
 
 1. Create `MERGING` / `STACK` nodes (if needed).
 2. Create merge ties between merge template, stack, and dataset.
 3. Create merge ties from stack/dataset to variable.
 4. Create equivalence ties between dataset-specific category uses.
 
+### Reviewing template summaries in Explore
+
+Recent CatMapperAPI and CatMapperJS updates expose merge-template summaries directly on `MERGING` and `STACK` pages in Explore.
+
+For a `MERGING` node, the **Merging Template** tab now shows:
+
+- each connected stack
+- the number of datasets in each stack
+- the number of equivalence ties
+- the number of key reassignments
+- the number of mapped variables
+
+For a `STACK` node, the same tab shows:
+
+- how many merge templates use that stack
+- the datasets attached to that stack
+- equivalence-tie, key-reassignment, and variable counts for each dataset
+
+Both views also provide downloadable spreadsheets for:
+
+- **Download Merging Ties**
+- **Download Equivalence Ties**
+
+These exports are useful for auditing a merge template before generating code.
+
+### Using the Download merge template tab
+
+The **Download merge template** tab on the Merge page is the main workflow for turning a saved `MERGING` node into review files or a merge-code bundle.
+
+1. Enter the `MERGING` CMID and click **Find Merging Template**.
+2. CatMapper checks the merge-template summary first and confirms whether the CMID is a valid `MERGING` node.
+3. If the template is valid, the page loads template metadata such as the template CMID, name, short name, and citation.
+4. If the template has variable mappings, click **Download list of Datasets** to export the current template rows. This spreadsheet includes the template, stack, and dataset IDs plus a `filePath` column that you fill in before generating syntax.
+5. If the template has equivalence ties, click **DOWNLOAD LINK FILE** to export the current category mappings.
+6. If the template has variable mappings, upload the completed template sheet and click **Generate Merge Files**.
+
+### What the downloads mean
+
+**Download list of Datasets** gives you the scaffold needed for syntax generation. In practice:
+
+- `mergingID` identifies the overall template
+- `stackID` identifies the stack, when already known
+- `datasetID` identifies the source dataset
+- `filePath` tells the generated syntax where to find your local source data files
+
+The uploaded template must include at least:
+
+- `mergingID`
+- `datasetID`
+- `filePath`
+
+`stackID` is helpful and may already be present in the downloaded sheet. If it is omitted, the API will try to recover it from the existing merge-template ties in the database.
+
+The first non-empty `filePath` is used as the runtime working directory for generated syntax, so the completed template should include both:
+
+- a working directory path
+- file paths for the dataset rows that should be loaded into the merge
+
+**DOWNLOAD LINK FILE** is especially helpful when a template has category equivalence ties but no variable mappings yet. The current UI exports two sheets:
+
+- `LinkFileWide`: one row per canonical category within a stack, with dataset IDs and parsed key parts grouped together
+- `LinkFileLong`: one row per equivalence tie, preserving the original CMID, equivalent CMID, and raw `Key` expression
+
+### Generating merge files
+
+When a template has variable mappings, CatMapper can now build a full merge bundle directly from the template.
+
+The generated ZIP currently includes:
+
+- `syntax.R`
+- `data.xlsx`
+- `categories.xlsx`
+
+These files reflect the saved template structure, including:
+
+- stack-level transforms
+- dataset-level transforms
+- variable filters
+- summary statistics
+- stack-scoped equivalence mappings
+
+If a template has no variable mappings, **Generate Merge Files** stays disabled and the page will direct you to use **DOWNLOAD LINK FILE** instead.
+
 ## 5. Recommended Workflow and Safety Rules
 
 To avoid key-format errors and rerun issues:
 
-1. Use `standard` upload mode for merge-template and edit workflows.
-2. Keys must be in `{property} == {variable}` format, for example `Name == Yoruba`.
-3. Validate required columns before upload:
+1. Use `standard` upload mode when creating or editing merge-template ties.
+2. Keys should use explicit equality syntax such as `Name == Yoruba`.
+3. Compound keys are supported; join separate conditions with `&&`, for example `Site == Red Rock && Region == Southwest`.
+4. Build category alignments first with **Propose merge**, then save or edit the merge-template ties, then generate merge files.
+5. Validate required columns before upload:
    - dataset ties: `mergingID`, `datasetID`
-   - variable ties: `mergingID`, `datasetID`, `variableID`, `varName`
-   - equivalence ties (long): `mergingID`, `categoryID`, `Key`, `datasetID`
+   - variable ties: `mergingID`, `datasetID`, `variableID`, `Key`, `varName`
+   - equivalence ties: `mergingID`, `categoryID`, `Key`, `datasetID`
+6. Merge-file generation only works when the saved template already includes variable mappings.
+7. Join Datasets still performs exact CMID joins only; hierarchical and cross-domain logic belongs in the proposal/template stage, not in the final two-file join.
 
 If you need help preparing template spreadsheets for your project, contact [support@catmapper.org](mailto:support@catmapper.org).
