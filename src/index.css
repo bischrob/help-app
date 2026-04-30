@@ -11,3 +11,78 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.worksheet-lines {
+  display: block;
+  margin: 0.65rem 0 1rem;
+}
+
+.worksheet-lines span {
+  display: block;
+  height: 1.55rem;
+  border-bottom: 1px solid #9e9e9e;
+}
+
+@media print {
+  @page {
+    margin: 0.65in;
+  }
+
+  body {
+    background: #fff;
+  }
+
+  header,
+  footer,
+  aside,
+  nav,
+  .MuiDrawer-root,
+  .MuiAppBar-root,
+  .no-print {
+    display: none !important;
+  }
+
+  main,
+  main > div,
+  main > div > div,
+  .print-document {
+    display: block !important;
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .print-document {
+    color: #000;
+    font-size: 11pt;
+    line-height: 1.35;
+  }
+
+  .print-document h1 {
+    font-size: 20pt;
+    margin-top: 0;
+  }
+
+  .print-document h2 {
+    font-size: 15pt;
+    page-break-after: avoid;
+  }
+
+  .print-document table {
+    display: table !important;
+    width: 100% !important;
+    page-break-inside: avoid;
+  }
+
+  .print-document th,
+  .print-document td {
+    border: 1px solid #555 !important;
+    min-height: 0.4in;
+  }
+
+  .worksheet-lines span {
+    height: 0.32in;
+    border-bottom-color: #777;
+  }
+}

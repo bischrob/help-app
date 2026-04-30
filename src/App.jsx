@@ -12,6 +12,7 @@ import {
   AppBar,
   Toolbar,
   Typography,
+  Button,
   IconButton,
   useMediaQuery,
   Divider,
@@ -39,6 +40,7 @@ const MarkdownViewer = ({ onHeadingsChange }) => {
   const { docId = 'index' } = useParams();
   const [content, setContent] = useState('Loading documentation...');
   const contentRef = useRef(null);
+  const isPrintableWorksheet = docId === 'creating-us-and-them';
 
   useEffect(() => {
     onHeadingsChange?.([]);
@@ -71,7 +73,14 @@ const MarkdownViewer = ({ onHeadingsChange }) => {
   }, [content, docId, onHeadingsChange]);
 
   return (
-    <Box ref={contentRef}>
+    <Box ref={contentRef} className="print-document">
+      {isPrintableWorksheet && (
+        <Box className="no-print" sx={{ display: 'flex', justifyContent: 'flex-end', mb: 2 }}>
+          <Button variant="contained" onClick={() => window.print()}>
+            Download PDF
+          </Button>
+        </Box>
+      )}
       <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]}>
         {content}
       </ReactMarkdown>

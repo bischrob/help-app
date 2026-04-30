@@ -15,6 +15,11 @@ export default defineConfig(({ mode }) => {
     build: {
       outDir: 'build',
     },
+    server: {
+      host: true,
+      port: 3000,
+      allowedHosts: ['dev-help.catmapper.org', 'help-dev'],
+    },
     test: {
       environment: 'jsdom',
       setupFiles: './src/setupTests.js',
