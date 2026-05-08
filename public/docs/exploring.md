@@ -52,7 +52,7 @@ In this case, we want contextual information about the ethnic group Yoruba.
 
 The `Info` page includes a consistent tab order:
 
-1.  `NETWORK EXPLORER`: shows category relationships (for example `CONTAINS`, `RELIGION_OF`, `DISTRICT_OF`, and `USES`).
+1.  `NETWORK EXPLORER`: shows category relationships (for example `CONTAINS`, `RELIGION_OF`, `AREA_OF`, and `USES`).
 
 2.  `MAP`: shows map-based geography associated with the category.
 
@@ -134,7 +134,7 @@ After selecting the node and pressing `View`, the *Info page* opens for the eHRA
 
 In this case, we want to know what language(s) the Yoruba speak, what other ethnicities are related to the Yoruba, where the Yoruba live, and what religion(s) the Yoruba practice. This information can be found through the *Network Explorer*.
 
-In the *Network Explorer* tab in the *Info page*, the drop down menu labeled "*Choose Relationship to View"* gives you the choice of exploring CONTAINS ties, LANGUAGE_OF ties, DISTRICT_OF ties, and USES ties which describe how different datasets encode the category.
+In the *Network Explorer* tab in the *Info page*, the drop down menu labeled "*Choose Relationship to View"* gives you the choice of exploring CONTAINS ties, LANGUAGE_OF ties, AREA_OF ties, and USES ties which describe how different datasets encode the category.
 
 *Figure 12. `NETWORK EXPLORER` view with `CONTAINS` selected.*
 
@@ -148,11 +148,11 @@ Here, selecting CONTAINS in the *Relationship* dropdown, you can see that Yoruba
 
 Changing the *Relationship* dropdown to RELIGION_OF, you can see that the religion practiced by the Yoruba is Isese.
 
-*Figure 14. `NETWORK EXPLORER` view with `DISTRICT_OF` selected.*
+*Figure 14. `NETWORK EXPLORER` view with `AREA_OF` selected.*
 
-![Network Explorer showing DISTRICT_OF relationship](screenshots/explore-network-district-of-full.webp)
+![Network Explorer showing AREA_OF relationship](screenshots/explore-network-district-of-full.webp)
 
-Changing the *Relationship* to DISTRICT_OF, you can see that the Yoruba live in Ghana, Benin, Nigeria, and Togo. In some examples, you may be able to find more specific administrative level districts by changing the Administrative level in the *Domain* drop down.
+Changing the *Relationship* to AREA_OF, you can see that the Yoruba live in Ghana, Benin, Nigeria, and Togo. In some examples, you may be able to find more specific administrative level districts by changing the Administrative level in the *Domain* drop down.
 
 To access additional information about a node seen within the *Network Explorer*, click the node, review the information box, and then press `View` to open its *Info page*.
 

@@ -57,7 +57,7 @@ they are related to each other, and how they are encoded by diverse
 | All | GENERIC |  |
 
 CatMapper stores contextual information about categories through a range
-of ties (e.g., contains, district_of, language_of, religion_of) (**Table
+of ties (e.g., contains, area_of, language_of, religion_of) (**Table
 2**).
 
 **Table 2. Ties that store contextual information about categories**
@@ -65,7 +65,7 @@ of ties (e.g., contains, district_of, language_of, religion_of) (**Table
 | Tie | Description |
 | --- | --- |
 | X CONTAINS Y | Y is a sub-category of X |
-| X DISTRICT_OF Y | X is a geospatial locale for Y |
+| X AREA_OF Y | X is a geospatial locale for Y |
 | X LANGUAGE_OF Y | X is a language associated with Y |
 | X RELIGION_OF Y | X is a religion associated with Y |
 | X USES Y | Dataset X uses the category Y |
