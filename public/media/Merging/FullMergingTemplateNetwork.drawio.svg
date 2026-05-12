@@ -522,15 +522,10 @@
                         <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 538px; margin-left: 372px;">
                             <div style="box-sizing: border-box; font-size: 0; text-align: center; color: #000000; background-color: #ffffff; ">
                                 <div style="display: inline-block; font-size: 11px; font-family: &quot;Helvetica&quot;; color: light-dark(#000000, #ffffff); line-height: 1.2; pointer-events: all; background-color: light-dark(#ffffff, var(--ge-dark-color, #121212)); white-space: nowrap; ">
-                                    EQUIVALENT
+                                    MERGING
                                     <div>
                                         <font style="color: light-dark(rgb(255, 0, 0), rgb(237, 237, 237));">
                                             stack: s1
-                                        </font>
-                                    </div>
-                                    <div>
-                                        <font style="color: light-dark(rgb(255, 0, 0), rgb(237, 237, 237));">
-                                            dataset: d1
                                         </font>
                                     </div>
                                     <div>
@@ -543,7 +538,7 @@
                         </div>
                     </foreignObject>
                     <text x="372" y="541" fill="light-dark(#000000, #ffffff)" font-family="&quot;Helvetica&quot;" font-size="11px" text-anchor="middle">
-                        EQUIVALENT...
+                        MERGING...
                     </text>
                 </switch>
             </g>
@@ -576,15 +571,10 @@
                         <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 417px; margin-left: 490px;">
                             <div style="box-sizing: border-box; font-size: 0; text-align: center; color: #000000; background-color: #ffffff; ">
                                 <div style="display: inline-block; font-size: 11px; font-family: &quot;Helvetica&quot;; color: light-dark(#000000, #ffffff); line-height: 1.2; pointer-events: all; background-color: light-dark(#ffffff, var(--ge-dark-color, #121212)); white-space: nowrap; ">
-                                    EQUIVALENT
+                                    MERGING
                                     <div>
                                         <font style="color: light-dark(rgb(255, 0, 0), rgb(237, 237, 237));">
                                             stack: s1
-                                        </font>
-                                    </div>
-                                    <div>
-                                        <font style="color: light-dark(rgb(255, 0, 0), rgb(237, 237, 237));">
-                                            dataset: d1
                                         </font>
                                     </div>
                                     <div>
@@ -597,7 +587,7 @@
                         </div>
                     </foreignObject>
                     <text x="490" y="420" fill="light-dark(#000000, #ffffff)" font-family="&quot;Helvetica&quot;" font-size="11px" text-anchor="middle">
-                        EQUIVALENT...
+                        MERGING...
                     </text>
                 </switch>
             </g>

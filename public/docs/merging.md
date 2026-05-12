@@ -214,18 +214,18 @@ In the current app, merge templates appear in two places:
 The new merge-template network has two layers:
 
 1. a template layer that groups datasets and variables into stacks
-2. an equivalence layer that records how dataset-specific category keys map onto canonical categories within each stack
+2. a category merging layer that records how dataset-specific keys map to categories within each stack
 
 The merge-template graph is centered on:
 
 - a `MERGING` node (the overall template),
 - one or more `STACK` nodes (groupings of datasets),
 - links to `DATASET` and `VARIABLE`,
-- and `EQUIVALENT` ties that capture category-level alignment decisions.
+- and category `MERGING` ties from `DATASET` to `CATEGORY` that capture category-level alignment decisions.
 
-*Figure 4. Merge-template graph structure linking `MERGING`, `STACK`, `DATASET`, `VARIABLE`, and `EQUIVALENT`.*
+*Figure 4. Merge-template graph structure linking `MERGING`, `STACK`, `DATASET`, `VARIABLE`, and category mappings.*
 
-![Merge-template graph structure showing MERGING, STACK, DATASET, VARIABLE, and EQUIVALENT](media/Merging/FullMergingTemplateNetwork.drawio.svg)
+![Merge-template graph structure showing MERGING, STACK, DATASET, VARIABLE, and category mappings](media/Merging/FullMergingTemplateNetwork.drawio.svg)
 
 ### Core structure
 
@@ -241,9 +241,9 @@ In the current CatMapperAPI and CatMapperJS implementation, those pieces are use
 - `USES` tie from `DATASET` to `CATEGORY`: records the dataset-specific key already stored in CatMapper
 - `MERGING` tie from `STACK` to `VARIABLE`: stores stack-level variable behavior such as `varName`, `stackTransform`, `variableFilter`, `summaryStatistic`, `summaryFilter`, and `summaryWeight`
 - `MERGING` tie from `DATASET` to `VARIABLE`: stores dataset-specific variable information scoped by `stack` and `Key`, including `datasetTransform`
-- `EQUIVALENT` tie between `CATEGORY` nodes: stores stack-scoped and dataset-scoped category mappings used to build link files and merge syntax
+- `MERGING` tie from `DATASET` to `CATEGORY`: stores stack-scoped category mappings used to build link files and merge syntax. The relationship stores `Key` and `stack`; the start dataset node supplies the dataset CMID.
 
-An `EQUIVALENT` tie where the original and equivalent CMIDs are the same is a self-reference. That means the dataset key already points to the canonical category used by the stack. When the CMIDs differ, the tie records a reassignment from a dataset-specific category to the canonical category used for the merge.
+Category merging ties connect a dataset key directly to the category used by the stack.
 
 ### Upload table structures
 
@@ -256,7 +256,7 @@ The merge-template workflow supports four practical table shapes:
 1. Create `MERGING` / `STACK` nodes (if needed).
 2. Create merge ties between merge template, stack, and dataset.
 3. Create merge ties from stack/dataset to variable.
-4. Create equivalence ties between dataset-specific category uses.
+4. Create category merging ties from datasets to categories.
 
 ### Reviewing template summaries in Explore
 
@@ -266,20 +266,20 @@ For a `MERGING` node, the **Merging Template** tab now shows:
 
 - each connected stack
 - the number of datasets in each stack
-- the number of equivalence ties
-- the number of key reassignments
+- the number of category merging ties
+- the number of key reassignments, counted when a category merging tie's `Key` does not match any `USES` tie between the same dataset and category
 - the number of mapped variables
 
 For a `STACK` node, the same tab shows:
 
 - how many merge templates use that stack
 - the datasets attached to that stack
-- equivalence-tie, key-reassignment, and variable counts for each dataset
+- category-merging-tie, key-reassignment, and variable counts for each dataset
 
 Both views also provide downloadable spreadsheets for:
 
 - **Download Merging Ties**
-- **Download Equivalence Ties**
+- **Download Category Merging Ties**
 
 These exports are useful for auditing a merge template before generating code.
 
@@ -291,7 +291,7 @@ The **Download merge template** tab on the Merge page is the main workflow for t
 2. CatMapper checks the merge-template summary first and confirms whether the CMID is a valid `MERGING` node.
 3. If the template is valid, the page loads template metadata such as the template CMID, name, short name, and citation.
 4. If the template has variable mappings, click **Download list of Datasets** to export the current template rows. This spreadsheet includes the template, stack, and dataset IDs plus a `filePath` column that you fill in before generating syntax.
-5. If the template has equivalence ties, click **DOWNLOAD LINK FILE** to export the current category mappings.
+5. If the template has category merging ties, click **DOWNLOAD LINK FILE** to export the current category mappings.
 6. If the template has variable mappings, upload the completed template sheet and click **Generate Merge Files**.
 
 ### What the downloads mean
@@ -316,10 +316,10 @@ The first non-empty `filePath` is used as the runtime working directory for gene
 - a working directory path
 - file paths for the dataset rows that should be loaded into the merge
 
-**DOWNLOAD LINK FILE** is especially helpful when a template has category equivalence ties but no variable mappings yet. The current UI exports two sheets:
+**DOWNLOAD LINK FILE** is especially helpful when a template has category merging ties but no variable mappings yet. The current UI exports two sheets:
 
 - `LinkFileWide`: one row per canonical category within a stack, with dataset IDs and parsed key parts grouped together
-- `LinkFileLong`: one row per equivalence tie, preserving the original CMID, equivalent CMID, and raw `Key` expression
+- `LinkFileLong`: one row per category merging tie, preserving the dataset CMID, category CMID, category name, and raw `Key` expression
 
 ### Generating merge files
 
@@ -352,7 +352,7 @@ To avoid key-format errors and rerun issues:
 5. Validate required columns before upload:
    - dataset ties: `mergingID`, `datasetID`
    - variable ties: `mergingID`, `datasetID`, `variableID`, `Key`, `varName`
-   - equivalence ties: `mergingID`, `categoryID`, `Key`, `datasetID`
+   - category merging ties: `datasetID`, `categoryID`, `Key`, `stackID`; `mergingID` can be supplied instead of `stackID` when the stack can be inferred
 6. Merge-file generation only works when the saved template already includes variable mappings.
 7. Join Datasets still performs exact CMID joins only; hierarchical and cross-domain logic belongs in the proposal/template stage, not in the final two-file join.
 
