@@ -23,6 +23,10 @@ Write endpoints (for example upload/edit workflows) require a CatMapper API key 
 
 Do not commit API keys to source control or share keys in public scripts/notebooks.
 
+## API Vignette: OpenRefine Reconciliation
+
+Use the [OpenRefine Reconciliation API guide](/openrefine-reconciliation) to register SocioMap or ArchaMap as an OpenRefine reconciliation service. The public registration URLs are `https://api.catmapper.org/reconcile/SocioMap` and `https://api.catmapper.org/reconcile/ArchaMap`.
+
 ## API Vignette: Search Endpoint
 
 Use `GET /search` to find categories or datasets in SocioMap/ArchaMap, including filtered searches by property, domain, time range, country, and context.
