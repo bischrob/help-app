@@ -43,6 +43,17 @@ ensure_writable_dir() {
 
 echo "[help-app] Building app..."
 cd "${APP_DIR}"
+if [[ -n "$(git status --porcelain)" ]]; then
+  echo "Error: help-app has uncommitted changes. Commit before deploying."
+  exit 1
+fi
+CURRENT_BRANCH="$(git rev-parse --abbrev-ref HEAD)"
+APP_VERSION="$(node -p "require('./package.json').version")"
+if [[ -z "${APP_VERSION}" ]]; then
+  echo "Error: package.json has no committed version. Install the repository Git hooks and commit again."
+  exit 1
+fi
+echo "[help-app] Deploying committed version ${APP_VERSION}..."
 ensure_writable_dir "${APP_DIR}/node_modules" "dependency directory"
 ensure_writable_dir "${BUILD_DIR}" "build output directory"
 ensure_writable_dir "${TARGET_DIR}" "help deploy target"
@@ -107,4 +118,13 @@ sync_dir() {
 
 sync_dir "${BUILD_DIR}" "${TARGET_DIR}"
 
-echo "[help-app] Deploy complete."
+if ! git rev-parse "v${APP_VERSION}" >/dev/null 2>&1; then
+  git tag -a "v${APP_VERSION}" -m "Deployment on $(date)"
+elif [[ "$(git rev-list -n 1 "v${APP_VERSION}")" != "$(git rev-parse HEAD)" ]]; then
+  echo "Error: v${APP_VERSION} already points to another commit."
+  exit 1
+fi
+git push origin "${CURRENT_BRANCH}"
+git push origin "v${APP_VERSION}"
+
+echo "[help-app] Deploy complete on v${APP_VERSION}."
