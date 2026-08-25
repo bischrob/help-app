@@ -1,70 +1,49 @@
-# Getting Started with Create React App
+# CatMapper help app
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Vite and React documentation site published at [help.catmapper.org](https://help.catmapper.org). It renders the reviewer- and user-facing CatMapper guides, navigation sidebar, images, and stable route entrypoints.
 
-## Available Scripts
+## Repository map
 
-In the project directory, you can run:
+- `src/` contains the React documentation UI.
+- `public/docs/` contains documentation content and `sidebar.json` navigation.
+- `public/media/` and `public/screenshots/` contain documentation assets.
+- `deploy.sh` builds the site, generates static route entrypoints, and publishes `build/`.
 
-### `npm start`
+## Local development
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Requires Node.js 20.19 or newer.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```bash
+npm install
+npm run dev
+```
 
-### `npm test`
+The development server listens on port 3000 by default.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Validation
 
-### `npm run build`
+```bash
+npm test
+npm run build
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+When changing documentation navigation, verify that every `sidebar.json` entry resolves and that direct loading of generated routes works after the production build.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Commit versions and deployment
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Enable the repository-managed hook:
 
-### `npm run eject`
+```bash
+git config core.hooksPath .githooks
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+The hook updates `package.json` and `package-lock.json` with a timestamped version in every commit. `deploy.sh` builds and tags the existing committed version; it does not create a separate version commit.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Production and development deployment are normally orchestrated from the CatMapper superproject. Deploy only from a clean, fast-forwardable checkout.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Contributing documentation
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Keep instructions task-oriented and use the exact UI labels visible to users.
+- Store durable navigation in `public/docs/sidebar.json`.
+- Add images under `public/images/` with descriptive filenames and alternative text in the page content.
+- Do not include credentials, private datasets, personal information, or internal-only operational details.
